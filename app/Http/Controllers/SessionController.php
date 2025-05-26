@@ -90,4 +90,10 @@ class SessionController extends Controller
 
         return redirect()->route('session.addComic')->with('success', 'Comic added successfully');
     }
+
+    public function deleteComic(Comic $comic){
+        $comic->characters()->detach();
+        $comic->delete();
+        return redirect()->route('comics.index')->with('success', 'Comic deleted successfully');
+    }
 }

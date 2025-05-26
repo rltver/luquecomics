@@ -137,9 +137,23 @@
                     <a href="" class="w-8 h-8 leading-8 text-center rounded-sm bg-indigo-700 text-white cursor-pointer hover:text-yellow-500 transition duration-300">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </a>
-                    <a href="" class="w-8 h-8 leading-8 text-center rounded-sm bg-indigo-700 text-white cursor-pointer hover:text-yellow-500 transition duration-300">
+                    <button class="w-8 h-8 leading-8 text-center rounded-sm bg-red-600 text-white cursor-pointer hover:text-yellow-500 transition duration-300" onclick="my_modal_2.showModal()">
                         <i class="fa-solid fa-trash"></i>
-                    </a>
+                    </button>
+                    <dialog id="my_modal_2" class="modal ">
+                        <div class="modal-box bg-white rounded-sm">
+                            <h3 class="text-lg font-bold">¿Borrar cómic?</h3>
+                            <p class="py-4">Si borras este comic no podras recuperarlo luego.</p>
+                            <form method="post" action="{{route('session.deleteComic',$comic->id)}}">
+                                @csrf
+                                <x-forms.button class="!bg-red-500 float-end">Borrar</x-forms.button>
+                                @method('delete')
+                            </form>
+                        </div>
+                        <form method="dialog" class="modal-backdrop">
+                            <button>close</button>
+                        </form>
+                    </dialog>
                 </div>
             @endif
         @endauth

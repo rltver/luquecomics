@@ -70,7 +70,7 @@ Route::controller(SessionController::class)->group(function () {
         Route::get('/edit-comic', 'editComic')->name('session.editComic');
         Route::post('/store-comic', 'storeComic')->name('session.storeComic');
         Route::post('/update-comic', 'updateComic')->name('session.updateComic');
-        Route::delete('/delete-comic', 'deleteComic')->name('session.deleteComic');
+        Route::delete('/delete-comic/{comic}', 'deleteComic')->name('session.deleteComic');
     });
 });
 

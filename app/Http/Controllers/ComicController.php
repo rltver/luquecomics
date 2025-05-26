@@ -25,14 +25,25 @@ class ComicController extends Controller
         }
 
         if ($request->filled('characters')) {
-            $query->whereHas('characters', function ($q) use ($request) {
-                $q->whereIn('characters.id', $request->get('characters'));
-            });
+            //show all the comics where the characters appear (it can be individually)
+//            $query->whereHas('characters', function ($q) use ($request) {
+//                $q->whereIn('characters.id', $request->get('characters'));
+//            });
+
+            //show comics where all characters appear at the same time
+            $characterIds = $request->get('characters');
+
+            foreach ($characterIds as $characterId) {
+                $query->whereHas('characters', function ($q) use ($characterId) {
+                    $q->where('characters.id', $characterId);
+                });
+            }
         }
 
         if ($request->has('stock')) {
             $query->where('stock', '>', 0);
         }
+
 
         if ($request->filled('order_by')) {
             switch ($request->get('order_by')) {
@@ -52,7 +63,10 @@ class ComicController extends Controller
                     $query->orderBy('created_at', 'desc');
                     break;
             }
+        } else {
+            $query->orderBy('created_at', 'desc');
         }
+//        $comics = $query->paginate(12)->onEachSide(1);
 
         $comics = $query->paginate(12)->onEachSide(1);
         $publishers = Publisher::all();

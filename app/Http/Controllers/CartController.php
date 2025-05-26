@@ -83,6 +83,11 @@ class CartController extends Controller
     }
 
     public function placeOrder(Request $request){
+        $cart = session('cart', []); // Obtiene el carrito o un array vacío
+
+        if (empty($cart)) {
+            return redirect('/')->with('success', 'El carrito está vacío.');
+        }
         $request->validate([
             'name' => 'required',
             'surname' => 'required',
@@ -153,6 +158,12 @@ class CartController extends Controller
             $order->status = 'in progress';
             $order->stripe_id = $session->id;
             $order->save();
+            foreach ($order->items as $item){
+                $comic = Comic::find($item->comic_id);
+                $comic->stock -= $item->quantity;
+                $comic->save();
+            }
+
             session()->forget('cart');
             return redirect()->route('session.orders');
         }
