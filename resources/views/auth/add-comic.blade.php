@@ -70,7 +70,7 @@
                     </div>
                     <div>
                         <x-forms.label for="publisher_id">{{__('add_comic.publisher')}}</x-forms.label>
-                        <select name="publisher_id" id="publisher_id" class="w-full px-3 py-2 text-gray-700 bg-white border border-gray-200 rounded-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200">
+                        <select name="publisher_id" id="publisher_id" class="w-full px-2 py-2 text-gray-700 bg-white border border-gray-200 rounded-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200">
                             <option value="" disabled selected>{{__('add_comic.select')}}</option>
                             @foreach($publishers as $publisher)
                                 <option value="{{$publisher->id}}" {{ old('publisher_id') == $publisher->id ? 'selected' : '' }}>{{$publisher->name}}</option>
@@ -101,7 +101,7 @@
                     </div>
                     <div>
                         <x-forms.label for="type">{{__('add_comic.type')}}</x-forms.label>
-                        <select name="type" id="type" class="w-full px-3 py-2 text-gray-700 bg-white border border-gray-200 rounded-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200">
+                        <select name="type" id="type" class="w-full px-2 py-2 text-gray-700 bg-white border border-gray-200 rounded-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200">
                             <option value="" disabled selected>{{__('add_comic.select')}}</option>
                             <option value="Trade paperback" {{ old('type') === 'Trade paperback' ? 'selected' : '' }}>Trade paperback</option>
                             <option value="Omnibus" {{ old('type') === 'Omnibus' ? 'selected' : '' }}>Omnibus</option>
@@ -126,7 +126,7 @@
 
 
                 </div>
-                <x-forms.button class="mt-2 lg:mt-6 w-3/4 min-w-70 lg:w-full">{{__('add_comic.upload')}}</x-forms.button>
+                <x-forms.button class="mt-6 w-3/4 min-w-70 lg:w-full">{{__('add_comic.upload')}}</x-forms.button>
             </div>
         </form>
 

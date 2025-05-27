@@ -7,6 +7,7 @@ use App\Models\Comic;
 use App\Models\Publisher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
@@ -95,5 +96,65 @@ class SessionController extends Controller
         $comic->characters()->detach();
         $comic->delete();
         return redirect()->route('comics.index')->with('success', 'Comic deleted successfully');
+    }
+
+    public function editComic(Comic $comic){
+        $characters = Character::all();
+        $publishers = Publisher::all();
+        return view('auth.edit-comic', compact('comic', 'characters', 'publishers'));
+    }
+
+    public function updateComic(Request $request, Comic $comic){
+        $validated = request()->validate([
+            'title' => ['required','string','max:255','min:3'],
+            'author' => ['required','string','max:255','min:3'],
+            'artist' => ['required','string','max:255','min:3'],
+            'description' => ['required','string','min:3','max:10000'],
+            'price' => ['required','numeric','min:1'],
+            'stock' => ['required','numeric','min:1'],
+            'publisher_id' => ['required','numeric','exists:publishers,id'],
+            'characters' => ['required','array'],
+            'characters.*' => ['required','integer','exists:characters,id'],
+            'type' => ['required', 'in:Trade paperback,Omnibus,Hard cover'],
+            'pages' => ['required','numeric','min:1'],
+            'weight' => ['required','numeric','min:1'],
+        ]);
+
+        $comic->update([
+            'title' => $validated['title'],
+            'author' => $validated['author'],
+            'artist' => $validated['artist'],
+            'description' => $validated['description'],
+            'price' => $validated['price'],
+            'stock' => $validated['stock'],
+            'publisher_id' => $validated['publisher_id'],
+            'type' => $validated['type'],
+            'pages' => $validated['pages'],
+            'weight' => $validated['weight'],
+            'slug' => Str::slug($validated['title'])
+        ]);
+        $comic->characters()->sync($request->input('characters', []));
+        return redirect()->route('session.editComic', $comic->id)->with('success', 'Comic updated successfully');
+    }
+
+    public function updateThumbnail(Request $request, Comic $comic)
+    {
+        $validated = $request->validate([
+            'thumbnail_image' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+        ]);
+
+        if ($comic->thumbnail_image && Storage::disk('public')->exists('comics/'.$comic->thumbnail_image)) {
+            Storage::disk('public')->delete('comics/'.$comic->thumbnail_image);
+        }
+
+        $file = $request->file('thumbnail_image');
+        $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+        $file->storeAs('comics', $filename, 'public');
+
+        $comic->update([
+            'thumbnail_image' => $filename,
+        ]);
+
+        return redirect()->back()->with('success', 'Portada actualizada correctamente.');
     }
 }

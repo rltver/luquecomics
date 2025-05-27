@@ -67,9 +67,10 @@ Route::controller(SessionController::class)->group(function () {
 
     Route::middleware(['auth','admin'])->group(function () {
         Route::get('/add-comic', 'addComic')->name('session.addComic');
-        Route::get('/edit-comic', 'editComic')->name('session.editComic');
+        Route::get('/edit-comic/{comic}', 'editComic')->name('session.editComic');
         Route::post('/store-comic', 'storeComic')->name('session.storeComic');
-        Route::post('/update-comic', 'updateComic')->name('session.updateComic');
+        Route::put('/update-comic/{comic}', 'updateComic')->name('session.updateComic');
+        Route::put('/update-thumbnail/{comic}', 'updateThumbnail')->name('session.updateThumbnail');
         Route::delete('/delete-comic/{comic}', 'deleteComic')->name('session.deleteComic');
     });
 });

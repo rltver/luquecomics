@@ -134,7 +134,7 @@
         @auth
             @if(auth()->user()->is_admin)
                 <div class="flex gap-3 mt-6 justify-end">
-                    <a href="" class="w-8 h-8 leading-8 text-center rounded-sm bg-indigo-700 text-white cursor-pointer hover:text-yellow-500 transition duration-300">
+                    <a href="{{route('session.editComic',$comic->id)}}" class="w-8 h-8 leading-8 text-center rounded-sm bg-indigo-700 text-white cursor-pointer hover:text-yellow-500 transition duration-300">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </a>
                     <button class="w-8 h-8 leading-8 text-center rounded-sm bg-red-600 text-white cursor-pointer hover:text-yellow-500 transition duration-300" onclick="my_modal_2.showModal()">
