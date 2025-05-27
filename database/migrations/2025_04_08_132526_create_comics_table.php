@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->foreignIdFor(\App\Models\Publisher::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -27,7 +27,14 @@
                                 >
                             </div>
                             <div class="mt-3 flex flex-col justify-between">
-                                <h2 class="capitalize text-lg font-semibold">{{$item->comic->title}}</h2>
+                                @if($item->comic->trashed())
+                                    <p class="capitalize text-lg font-semibold">
+                                        {{$item->comic->title}}
+                                        <span class="text-red-500"> (not available anymore)</span>
+                                    </p>
+                                @else
+                                    <a href="{{route('comics.show',$item->comic->id)}}" class="capitalize text-lg font-semibold hover:text-yellow-500 transition duration-300">{{$item->comic->title}}</a>
+                                @endif
                                 <div>
                                     <p>{{__('orders.units')}}: {{$item->quantity}}</p>
                                     <p>{{__('orders.unit_price')}}: {{$item->unit_price}} €</p>

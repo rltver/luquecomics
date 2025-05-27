@@ -19,6 +19,6 @@ class OrderItem extends Model
         return $this->belongsTo(Order::class);
     }
     public function comic():BelongsTo{
-        return $this->belongsTo(Comic::class);
+        return $this->belongsTo(Comic::class)->withTrashed();
     }
 }

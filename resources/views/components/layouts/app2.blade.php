@@ -46,9 +46,9 @@
                        type="text"
                        placeholder="{{__('home.search_desktop')}}"
                        value="{{ request('search') ? request('search') : '' }}"
-                       class="w-full px-4 py-2 rounded-l text-gray-300 outline-2 outline-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-300">
+                       class="w-full px-4 py-2 rounded-l border-none text-gray-300 focus:outline-none  transition duration-300">
                 <button type="submit"
-                        class="bg-yellow-500 hover:bg-yellow-600 text-gray-800 ring-2 ring-yellow-500 px-4 py-2 rounded-r transition duration-300">
+                        class="bg-yellow-500 hover:bg-yellow-600 cursor-pointer border-none text-gray-800 px-4 py-2 rounded-r transition duration-300">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </form>
@@ -209,7 +209,6 @@
                 <ul class="space-y-2">
                     <li><a href="#" class="hover:text-yellow-400 transition duration-300">{{__('home.home')}}</a></li>
                     <li><a href="{{route('comics.index')}}" class="hover:text-yellow-400 transition duration-300">{{__('home.footer_comics')}}</a></li>
-                    <li><a href="#" class="hover:text-yellow-400 transition duration-300">{{__('home.about_us')}}</a></li>
                 </ul>
             </div>
 
@@ -217,7 +216,6 @@
             <div>
                 <h4 class="text-lg font-semibold mb-4">{{__('home.categories')}}</h4>
                 <ul class="space-y-2">
-                    <li><a href="#" class="hover:text-yellow-400 transition duration-300">{{__('home.superheroes')}}</a></li>
                     <li><a href="#" class="hover:text-yellow-400 transition duration-300">DC</a></li>
                     <li><a href="#" class="hover:text-yellow-400 transition duration-300">Marvel</a></li>
                 </ul>
@@ -288,6 +286,7 @@
 <!-- Scripts adicionales -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.0/nouislider.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 <script>
     //ajax
 </script>

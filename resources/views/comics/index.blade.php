@@ -68,7 +68,7 @@
             class="w-full cursor-pointer flex flex-col items-center sm:m-4 rounded-sm shadow-md p-4 m-auto sm:w-[300px] md:w-auto hover:shadow-xl transition-all duration-300"
         >
             <img class="mb-2 h-96 md:h-72  2xl:h-96 w-full object-contain" src="{{asset('storage/comics/'. ($comic->thumbnail_image ?? 'default.webp'))}}" alt="{{$comic->thumbnail_image}}">
-            <h2 class="line-clamp-2 h-15 font-semibold text-center text-xl capitalize">{{$comic->title}}</h2>
+            <h2 class="line-clamp-2 h-15 font-semibold text-center text-xl capitalize" title="{{$comic->title}}">{{$comic->title}}</h2>
             @if($comic->stock)
                 @if($comic->stock < 11)
                     <p class="my-2 text-orange-400">{{__('comics_index.last_units')}}</p>

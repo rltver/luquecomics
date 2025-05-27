@@ -1,5 +1,5 @@
 <div class="dropdown dropdown-end">
-    <!-- Botón del carrito -->
+    <!-- button -->
     <div tabindex="0" role="button" class="relative">
         <div class="cursor-pointer hover:text-yellow-400 transition duration-300 p-1">
             <i class="fa-solid fa-cart-shopping"></i>
@@ -9,9 +9,9 @@
         </div>
     </div>
 
-    <!-- Contenido del dropdown -->
+    <!-- dropdown -->
     <ul tabindex="0" class="dropdown-content menu text-black bg-white shadow-xl rounded-box w-80 z-50 mt-2 border border-gray-100">
-        <!-- Encabezado -->
+        <!-- header -->
         <div class="p-4 border-b border-gray-100">
             <h3 class="font-bold text-lg flex items-center gap-2">
                 <i class="fa-solid fa-cart-shopping text-yellow-500"></i>
@@ -19,13 +19,13 @@
             </h3>
         </div>
 
-        <!-- Lista de productos -->
+        <!-- comic list -->
         <div class="max-h-96 overflow-y-auto w-full">
             @if(session('cart', []))
                 @foreach(session('cart', []) as $id => $comic)
                     <li onclick="window.location.href='{{route('comics.show',$comic['id'])}}'" class="hover:bg-gray-50 p-3 border-b border-gray-100 last:border-b-0">
                         <div class="flex gap-4 items-center">
-                            <!-- Imagen del cómic -->
+                            <!-- thumbnail -->
                             <div class="w-16 h-16 flex-shrink-0 rounded overflow-hidden">
                                 <img
                                     src="{{ asset('storage/comics/'. ($comic['thumbnail_image'] ?? 'default.webp')) }}"
@@ -34,19 +34,19 @@
                                 >
                             </div>
 
-                            <!-- Detalles del producto -->
+                            <!-- comic details -->
                             <div class="flex-1 min-w-0">
                                 <h4 class="font-medium text-gray-900 truncate max-w-32">{{ $comic['title'] }}</h4>
                                 <p class="text-sm text-gray-500">{{__('home.units')}}: {{$comic['quantity']}}</p>
                                 <p class="text-yellow-600 font-bold mt-1">{{ number_format($comic['price'], 2) }} €</p>
                             </div>
 
-                            <!-- Botón eliminar -->
+                            <!-- delete button -->
                             <form method="post" action="{{route('cart.removeFromCart')}}">
                                 @csrf
                                 @method('put')
                                 <input type="hidden" name="id" value="{{$comic['id']}}">
-                                <button type="submit" class="text-gray-400 hover:text-red-500 transition">
+                                <button type="submit" class="cursor-pointer text-gray-400 hover:text-red-500 transition">
                                     <i class="fa-solid fa-trash-can"></i>
                                 </button>
                             </form>
@@ -61,7 +61,7 @@
             @endif
         </div>
 
-        <!-- Pie del carrito -->
+        <!-- footer -->
         @if(session('cart', []))
             <div class="p-4 border-t border-gray-100">
                 <div class="flex justify-between items-center mb-4">

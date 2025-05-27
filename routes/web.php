@@ -5,13 +5,15 @@ use App\Http\Controllers\ComicCommentController;
 use App\Http\Controllers\ComicController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
+use App\Models\Comic;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    $comics = Comic::where('stock', '>', 0)->orderBy('stock', 'asc')->take(10)->get(); // comics with less stock without beaing 0
+    return view('welcome', compact('comics'));
 });
 
 Route::get('/email/verify', function () {

@@ -143,7 +143,7 @@
                     <dialog id="my_modal_2" class="modal ">
                         <div class="modal-box bg-white rounded-sm">
                             <h3 class="text-lg font-bold">¿Borrar cómic?</h3>
-                            <p class="py-4">Si borras este comic no podras recuperarlo luego.</p>
+                            <p class="py-4">Si borras este comic solo podras recuperarlo desde la base de datos.</p>
                             <form method="post" action="{{route('session.deleteComic',$comic->id)}}">
                                 @csrf
                                 <x-forms.button class="!bg-red-500 float-end">Borrar</x-forms.button>
