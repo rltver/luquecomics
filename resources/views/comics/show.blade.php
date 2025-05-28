@@ -137,10 +137,10 @@
                     <a href="{{route('session.editComic',$comic->id)}}" class="w-8 h-8 leading-8 text-center rounded-sm bg-indigo-700 text-white cursor-pointer hover:text-yellow-500 transition duration-300">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </a>
-                    <button class="w-8 h-8 leading-8 text-center rounded-sm bg-red-600 text-white cursor-pointer hover:text-yellow-500 transition duration-300" onclick="my_modal_2.showModal()">
+                    <button class="w-8 h-8 leading-8 text-center rounded-sm bg-red-600 text-white cursor-pointer hover:text-yellow-500 transition duration-300" onclick="deletebox.showModal()">
                         <i class="fa-solid fa-trash"></i>
                     </button>
-                    <dialog id="my_modal_2" class="modal ">
+                    <dialog id="deletebox" class="modal ">
                         <div class="modal-box bg-white rounded-sm">
                             <h3 class="text-lg font-bold">¿Borrar cómic?</h3>
                             <p class="py-4">Si borras este comic solo podras recuperarlo desde la base de datos.</p>

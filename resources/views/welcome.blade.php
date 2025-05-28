@@ -8,12 +8,15 @@
             </div>
             <!-- Item 2 -->
             <div class="hidden duration-1000 ease-in-out" data-carousel-item>
-                <img src="{{asset('storage/banner2.webp')}}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                <img src="{{asset('storage/banner2.jpg')}}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
             </div>
             <!-- Item 3 -->
             <div class="hidden duration-1000 ease-in-out" data-carousel-item>
                 <img src="{{asset('storage/banner3.jpg')}}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
             </div>
+        </div>
+        <div class="absolute z-30 flex top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center bg-indigo-400/30 p-3 rounded-sm">
+            <h1 class="text-4xl font-bold text-white">Bienvenido a <span class="text-indigo-600">Luque</span><span class="text-yellow-400">Comics</span></h1>
         </div>
         <!-- Slider indicators -->
         <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
@@ -25,23 +28,35 @@
 
     <section class="bg-gray-100 py-12">
         <div class="max-w-7xl mx-auto px-4">
+            {{-- most bought comics --}}
             <div class="text-center mb-12">
-                <h1 class="text-4xl font-bold text-gray-800">Bienvenido a LuqueComics</h1>
-                <p class="mt-2 text-gray-600">Tu tienda online de cómics, novelas gráficas y más</p>
+                <h1 class="text-4xl font-bold ">¡Nuestros top ventas!</h1>
+                <p class="mt-2 text-gray-600">¡Compralos antes de que se acaben!</p>
             </div>
-
-            {{-- Últimos cómics añadidos --}}
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 @foreach($comics as $comic)
-                    <div class="bg-white rounded-xl shadow hover:shadow-lg transition duration-300 overflow-hidden">
-                        <a href="{{ route('comics.show', $comic->slug) }}">
-                            <img src="{{ asset('storage/comics/' . $comic->thumbnail_image) }}" alt="{{ $comic->title }}" class="w-full h-60 object-cover">
-                            <div class="p-4">
-                                <h2 class="text-lg font-semibold text-gray-800">{{ $comic->title }}</h2>
-                                <p class="text-sm text-gray-500">{{ $comic->author }}</p>
-                                <p class="mt-1 font-bold text-indigo-600">{{ number_format($comic->price, 2) }} €</p>
-                            </div>
-                        </a>
+                    <div
+                        href=""
+                        onclick="window.location.href='{{route('comics.show',$comic->id)}}'"
+                        class="w-full bg-white cursor-pointer flex flex-col items-center sm:m-4 rounded-sm shadow-md p-4 m-auto sm:w-[300px] md:w-auto hover:shadow-xl transition-all duration-300"
+                    >
+                        <img class="mb-2 h-96 md:h-72  2xl:h-96 w-full object-contain" src="{{asset('storage/comics/'. ($comic->thumbnail_image ?? 'default.webp'))}}" alt="{{$comic->thumbnail_image}}">
+                        <h2 class="line-clamp-2 h-15 font-semibold text-center text-xl capitalize" title="{{$comic->title}}">{{$comic->title}}</h2>
+                        @if($comic->stock)
+                            @if($comic->stock < 11)
+                                <p class="my-2 text-orange-400">{{__('comics_index.last_units')}}</p>
+                                <h1 class="font-bold text-xl">{{number_format($comic->price,2)}} €</h1>
+                                <a href="{{route('cart.add',$comic->id)}}" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-xs transition flex items-center justify-center gap-2 mt-4"><i class="fa-solid fa-cart-shopping"></i>{{__('comics_index.add_to_cart')}}</a>
+                            @else
+                                <p class="my-2 text-green-400">{{__('comics_index.stock')}}</p>
+                                <h1 class="font-bold text-xl">{{number_format($comic->price,2)}} €</h1>
+                                <a href="{{route('cart.add',$comic->id)}}" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-xs transition flex items-center justify-center gap-2 mt-4"><i class="fa-solid fa-cart-shopping"></i>{{__('comics_index.add_to_cart')}}</a>
+                            @endif
+                        @else
+                            <p class="my-2 text-red-500">{{__('comics_index.sold_out')}}</p>
+                            <h1 class="font-bold text-xl">{{number_format($comic->price,2)}} €</h1>
+                            <p class="cursor-not-allowed bg-gray-300 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-xs transition flex items-center justify-center gap-2 mt-4"><i class="fa-solid fa-cart-shopping"></i>{{__('comics_index.add_to_cart')}}</p>
+                        @endif
                     </div>
                 @endforeach
             </div>

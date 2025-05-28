@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    $comics = Comic::where('stock', '>', 0)->orderBy('stock', 'asc')->take(10)->get(); // comics with less stock without beaing 0
+    $comics = Comic::where('stock', '>', 0)->orderBy('stock', 'asc')->take(8)->get(); // comics with less stock without beaing 0
     return view('welcome', compact('comics'));
-});
+})->name('home');
 
 Route::get('/email/verify', function () {
     if (auth()->user()->hasVerifiedEmail()) {

@@ -33,7 +33,7 @@
             </button>
 
             <!-- Logo -->
-            <a href="/" class="flex items-center space-x-2">
+            <a href="{{route('home')}}" class="flex items-center space-x-2">
                 <i class="fa-solid fa-person-falling-burst fa-2xl"></i>
                 <h1 class="text-2xl font-bold">Luque<span class="text-yellow-400">Comics</span></h1>
             </a>
@@ -101,9 +101,27 @@
         <!-- Iconos móviles (carrito y búsqueda) -->
         <div class="flex lg:hidden items-center space-x-4">
             @include('components.langSwitch')
-            <button class="text-white focus:outline-none">
+            <button class="text-white focus:outline-none cursor-pointer" onclick="searchbox.showModal()">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
+            <dialog id="searchbox" class="modal">
+                <div class="modal-box  bg-white rounded-sm p-3">
+                    <form class="flex" action="{{route('comics.index')}}">
+                        <input name="search"
+                               type="text"
+                               placeholder="{{__('home.search_desktop')}}"
+                               value="{{ request('search') ? request('search') : '' }}"
+                               class="w-full px-4 py-2 rounded-l border-none text-gray-800 ring-2 ring-indigo-600 focus:outline-none  transition duration-300">
+                        <button type="submit"
+                                class="bg-yellow-500 hover:bg-yellow-600 cursor-pointer ring-2 ring-indigo-600 border-none text-gray-800 px-4 py-2 rounded-r transition duration-300">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </form>
+                </div>
+                <form method="dialog" class="modal-backdrop">
+                    <button>close</button>
+                </form>
+            </dialog>
 {{--            <a href="#" class="relative text-white">--}}
 {{--                <i class="fa-solid fa-cart-shopping"></i>--}}
 {{--                <span class="absolute -top-2 -right-2 bg-yellow-500 text-xs text-gray-800 font-bold rounded-full h-5 w-5 flex items-center justify-center">--}}
@@ -117,11 +135,11 @@
     </div>
 </header>
 
-<!-- Menú Offcanvas para móviles -->
+<!-- offcanvas for mobile -->
 <div id="mobile-menu" class="fixed inset-0 z-50 hidden bg-gray-900/50 transition-opacity">
     <div class="fixed inset-y-0 left-0 w-5/6 max-w-xs bg-indigo-900 text-white shadow-lg transform transition-transform ease-in-out duration-300 -translate-x-full">
         <div class="flex flex-col h-full">
-            <!-- Encabezado del menú -->
+            <!-- offcanvas header -->
             <div class="flex items-center justify-between p-4 border-b border-indigo-800">
                 <div class="flex items-center space-x-2">
                     <i class="fa-solid fa-person-falling-burst fa-2xl"></i>
@@ -134,9 +152,9 @@
                 </button>
             </div>
 
-            <!-- Navegación móvil -->
+            <!-- mobile menu -->
             <nav class="flex-1 overflow-y-auto p-4 space-y-4">
-                <a href="#" class="block py-2 px-4 hover:bg-indigo-800 rounded transition duration-300">{{__('home.home')}}</a>
+                <a href="{{route('home')}}" class="block py-2 px-4 hover:bg-indigo-800 rounded transition duration-300">{{__('home.home')}}</a>
                 <a href="{{route('comics.index')}}"  class="{{request()->routeIs('comics.index') ? 'text-yellow-400 bg-indigo-800' : 'hover:text-yellow-400 hover:bg-indigo-800'}} block py-2 px-4 rounded transition duration-300">{{ __('home.comics') }}</a>
                 <a href="#" class="block py-2 px-4 hover:bg-indigo-800 rounded transition duration-300">Blog</a>
 
@@ -157,7 +175,7 @@
                 </div>
             </nav>
 
-            <!-- Footer del menú -->
+            <!-- offcanvas footer -->
             <div class="p-4 border-t border-indigo-800">
                 <div class="flex space-x-4 justify-center">
                     <a href="https://x.com/ikercasillas?lang=es" class="text-white hover:text-yellow-400">
@@ -172,7 +190,7 @@
     </div>
 </div>
 
-<!-- Menú de categorías -->
+<!-- menu for other links -->
 {{--<div class="bg-indigo-800 text-white shadow-md hidden">--}}
 {{--    <div class="container mx-auto px-4">--}}
 {{--        <nav class="flex justify-center flex-wrap py-2 space-x-6">--}}
@@ -186,33 +204,32 @@
 {{--    </div>--}}
 {{--</div>--}}
 
-<!-- Contenido principal -->
 <main class="flex-1">
-    {{-- Aquí se cargarán las vistas dinámicas --}}
+    {{-- dinamic views --}}
     {{$slot}}
 </main>
 
-<!-- Footer -->
+<!-- footer -->
 <footer class="bg-gray-800 text-white py-8 mt-12">
     <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
-            <!-- Información de la tienda -->
+            <!-- shop info -->
             <div>
                 <h3 class="text-xl font-bold mb-4 text-white">Luque<span class="text-yellow-400">Comics</span></h3>
                 <p class="mb-2">{{__('home.description')}}</p>
                 <p>{{__('home.shipments')}}</p>
             </div>
 
-            <!-- Enlaces rápidos -->
+            <!-- quick links -->
             <div>
                 <h4 class="text-lg font-semibold mb-4">{{__('home.quick_links')}}</h4>
                 <ul class="space-y-2">
-                    <li><a href="#" class="hover:text-yellow-400 transition duration-300">{{__('home.home')}}</a></li>
+                    <li><a href="{{route('home')}}" class="hover:text-yellow-400 transition duration-300">{{__('home.home')}}</a></li>
                     <li><a href="{{route('comics.index')}}" class="hover:text-yellow-400 transition duration-300">{{__('home.footer_comics')}}</a></li>
                 </ul>
             </div>
 
-            <!-- Categorías -->
+            <!-- categories -->
             <div>
                 <h4 class="text-lg font-semibold mb-4">{{__('home.categories')}}</h4>
                 <ul class="space-y-2">
@@ -221,7 +238,7 @@
                 </ul>
             </div>
 
-            <!-- Contacto y redes -->
+            <!-- contact -->
             <div>
                 <h4 class="text-lg font-semibold mb-4">{{__('home.contact')}}</h4>
                 <div class="space-y-2">
@@ -240,14 +257,14 @@
             </div>
         </div>
 
-        <!-- Derechos de autor -->
+        <!-- copyright -->
         <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
             <p>&copy; 2025 <a href="https://github.com/rltver" class="text-gray-300 hover:underline transition">Rafael Luque Trujillo</a>{{__('home.copyright')}}</p>
         </div>
     </div>
 </footer>
 
-<!-- Script para el menú offcanvas -->
+<!-- offcanvas script -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -268,7 +285,7 @@
             }, 300);
         });
 
-        // Cerrar al hacer clic fuera del menú
+        // close the menu when clicking outside
         mobileMenu.addEventListener('click', function(e) {
             if (e.target === mobileMenu) {
                 mobileMenu.querySelector('div > div').classList.add('-translate-x-full');
@@ -283,7 +300,7 @@
 
 </script>
 
-<!-- Scripts adicionales -->
+<!-- other scripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.0/nouislider.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
