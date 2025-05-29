@@ -152,7 +152,7 @@
 
                 </div>
 
-                <x-forms.button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition">Actualizar imagen</x-forms.button>
+                <x-forms.button type="submit" class="w-full">Actualizar imagen</x-forms.button>
             </form>
         </div>
     </div>

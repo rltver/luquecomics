@@ -6,6 +6,8 @@ use App\Models\Character;
 use App\Models\Comic;
 use App\Models\Publisher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class CharactersController extends Controller
 {
@@ -59,7 +61,8 @@ class CharactersController extends Controller
      */
     public function create()
     {
-
+        $publishers = Publisher::all();
+        return view('characters.create', compact('publishers'));
     }
 
     /**
@@ -67,7 +70,25 @@ class CharactersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'description' => ['required','string','min:3','max:10000'],
+            'publisher_id' => ['required','numeric','exists:publishers,id'],
+            'image' => ['required', 'image', 'mimes:jpg,jpeg,png,gif', 'max:4096'],
+            'first_appearance' => ['required','date','date_format:Y-m-d'],
+        ]);
+        $path = $request->file('image')->store('characters', 'public');
+
+        $character = Character::create([
+            'name' => $validatedData['name'],
+            'description' => $validatedData['description'],
+            'publisher_id' => $validatedData['publisher_id'],
+            'image' => basename($path),
+            'first_appearance' => $validatedData['first_appearance'],
+            'slug' => Str::slug($validatedData['name']).uniqid(),
+        ]);
+
+        return redirect()->route('characters.create')->with('success', 'Character added successfully');
     }
 
     /**
@@ -83,24 +104,63 @@ class CharactersController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Character $characters)
+    public function edit(Character $character)
     {
-        //
+        $publishers = Publisher::all();
+        return view('characters.edit', compact('character', 'publishers'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Character $characters)
+    public function update(Request $request, Character $character)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'description' => ['required','string','min:3','max:10000'],
+            'publisher_id' => ['required','numeric','exists:publishers,id'],
+            'first_appearance' => ['required','date','date_format:Y-m-d'],
+        ]);
+
+        $character->update([
+            'name' => $validatedData['name'],
+            'description' => $validatedData['description'],
+            'publisher_id' => $validatedData['publisher_id'],
+            'first_appearance' => $validatedData['first_appearance'],
+        ]);
+        return redirect()->route('characters.show', $character->id)->with('success', 'Character updated successfully');
+    }
+
+    public function updateImage(Request $request, Character $character){
+        $validated = $request->validate([
+            'image' => ['required', 'image', 'mimes:jpg,jpeg,png,gif', 'max:4096'],
+        ]);
+
+        if ($character->image && Storage::disk('public')->exists('characters/'.$character->image)) {
+            Storage::disk('public')->delete('characters/'.$character->image);
+        }
+
+        $file = $request->file('image');
+        $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+        $file->storeAs('characters', $filename, 'public');
+
+        $character->update([
+            'image' => $filename,
+        ]);
+
+        return redirect()->back()->with('success', 'Imagen del personaje actualizada correctamente.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Character $characters)
+    public function destroy(Character $character)
     {
-        //
+
+        if ($character->image && Storage::disk('public')->exists('characters/'.$character->image)) {
+            Storage::disk('public')->delete('characters/'.$character->image);
+        }
+        $character->delete();
+        return redirect()->route('characters.index')->with('success', 'Character deleted successfully');
     }
 }

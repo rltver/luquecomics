@@ -27,7 +27,7 @@
                     href="{{route('characters.create')}}"
                     class="{{request()->routeIs('characters.create') ? 'text-indigo-600' : 'hover:text-indigo-600'}} transition duration-300"
                 >
-                    Añadir personaje
+                    Añadir un personaje
                 </a>
                 <hr class="text-yellow-500">
             @endif

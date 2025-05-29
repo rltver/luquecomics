@@ -32,7 +32,7 @@
             @auth
                 @if(auth()->user()->is_admin)
                     <div class="flex gap-3 mt-6 justify-end items-end">
-                        <a href="{{route('session.editComic',$character->id)}}" class="w-8 h-8 leading-8 text-center rounded-sm bg-indigo-700 text-white cursor-pointer hover:text-yellow-500 transition duration-300">
+                        <a href="{{route('characters.edit',$character->id)}}" class="w-8 h-8 leading-8 text-center rounded-sm bg-indigo-700 text-white cursor-pointer hover:text-yellow-500 transition duration-300">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>
                         <button class="w-8 h-8 leading-8 text-center rounded-sm bg-red-600 text-white cursor-pointer hover:text-yellow-500 transition duration-300" onclick="deletebox.showModal()">
@@ -40,9 +40,9 @@
                         </button>
                         <dialog id="deletebox" class="modal ">
                             <div class="modal-box bg-white rounded-sm">
-                                <h3 class="text-lg font-bold">¿Borrar cómic?</h3>
-                                <p class="py-4">Si borras este comic solo podras recuperarlo desde la base de datos.</p>
-                                <form method="post" action="{{route('session.deleteComic',$character->id)}}">
+                                <h3 class="text-lg font-bold">¿Borrar personaje?</h3>
+                                <p class="py-4">Si borras este personaje no podras recuperarlo.</p>
+                                <form method="post" action="{{route('characters.destroy',$character->id)}}">
                                     @csrf
                                     <x-forms.button class="!bg-red-500 float-end">Borrar</x-forms.button>
                                     @method('delete')
@@ -61,48 +61,67 @@
 
     </div>
 
-    <section class="bg-gray-100 py-12">
-        <div class="max-w-7xl mx-auto px-4">
-            {{-- most bought comics --}}
-            <div class="text-center mb-12">
-                <h1 class="text-4xl font-bold ">Los cómics mas vendidos del personaje</h1>
-                <p class="mt-2 text-gray-600">Nuestra mejor selección</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                @foreach($comics as $comic)
-                    <div
-                        href=""
-                        onclick="window.location.href='{{route('comics.show',$comic->id)}}'"
-                        class="w-full bg-white cursor-pointer flex flex-col items-center rounded-sm shadow-md p-4 m-auto hover:shadow-xl transition-all duration-300"
-                    >
-                        <img class="mb-2 h-96 md:h-72  2xl:h-96 w-full object-contain" src="{{asset('storage/comics/'. ($comic->thumbnail_image ?? 'default.webp'))}}" alt="{{$comic->thumbnail_image}}">
-                        <h2 class="line-clamp-2 h-15 font-semibold text-center text-xl capitalize" title="{{$comic->title}}">{{$comic->title}}</h2>
-                        @if($comic->stock)
-                            @if($comic->stock < 11)
-                                <p class="my-2 text-orange-400">{{__('comics_index.last_units')}}</p>
-                                <h1 class="font-bold text-xl">{{number_format($comic->price,2)}} €</h1>
-                                <a href="{{route('cart.add',$comic->id)}}" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-xs transition flex items-center justify-center gap-2 mt-4"><i class="fa-solid fa-cart-shopping"></i>{{__('comics_index.add_to_cart')}}</a>
-                            @else
-                                <p class="my-2 text-green-400">{{__('comics_index.stock')}}</p>
-                                <h1 class="font-bold text-xl">{{number_format($comic->price,2)}} €</h1>
-                                <a href="{{route('cart.add',$comic->id)}}" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-xs transition flex items-center justify-center gap-2 mt-4"><i class="fa-solid fa-cart-shopping"></i>{{__('comics_index.add_to_cart')}}</a>
-                            @endif
-                        @else
-                            <p class="my-2 text-red-500">{{__('comics_index.sold_out')}}</p>
-                            <h1 class="font-bold text-xl">{{number_format($comic->price,2)}} €</h1>
-                            <p class="cursor-not-allowed bg-gray-300 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-xs transition flex items-center justify-center gap-2 mt-4"><i class="fa-solid fa-cart-shopping"></i>{{__('comics_index.add_to_cart')}}</p>
-                        @endif
-                    </div>
-                @endforeach
-            </div>
+    @if(count($comics)<1)
+        <section class="bg-gray-100 py-12">
+            <div class="max-w-7xl mx-auto px-4">
+                {{-- most bought comics --}}
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-bold ">Este personaje no tiene cómics disponibles actualmente</h1>
+                </div>
 
-            {{-- Botón para ver más --}}
-            <div class="mt-10 text-center">
-                <a href="{{ route('comics.index').'?characters%5B%5D='.$character->id }}"
-                   class="inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded shadow">
-                    Ver todos los cómics del personaje
-                </a>
+                {{-- boton para ver más --}}
+                <div class="mt-10 text-center">
+                    <a href="{{ route('comics.index') }}"
+                       class="inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded shadow">
+                        Explorar todos los cómics
+                    </a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @else
+        <section class="bg-gray-100 py-12">
+            <div class="max-w-7xl mx-auto px-4">
+                {{-- most bought comics --}}
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-bold ">Los cómics mas vendidos del personaje</h1>
+                    <p class="mt-2 text-gray-600">Nuestra mejor selección</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    @foreach($comics as $comic)
+                        <div
+                            href=""
+                            onclick="window.location.href='{{route('comics.show',$comic->id)}}'"
+                            class="w-full bg-white cursor-pointer flex flex-col items-center rounded-sm shadow-md p-4 m-auto hover:shadow-xl transition-all duration-300"
+                        >
+                            <img class="mb-2 h-96 md:h-72  2xl:h-96 w-full object-contain" src="{{asset('storage/comics/'. ($comic->thumbnail_image ?? 'default.webp'))}}" alt="{{$comic->thumbnail_image}}">
+                            <h2 class="line-clamp-2 h-15 font-semibold text-center text-xl capitalize" title="{{$comic->title}}">{{$comic->title}}</h2>
+                            @if($comic->stock)
+                                @if($comic->stock < 11)
+                                    <p class="my-2 text-orange-400">{{__('comics_index.last_units')}}</p>
+                                    <h1 class="font-bold text-xl">{{number_format($comic->price,2)}} €</h1>
+                                    <a href="{{route('cart.add',$comic->id)}}" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-xs transition flex items-center justify-center gap-2 mt-4"><i class="fa-solid fa-cart-shopping"></i>{{__('comics_index.add_to_cart')}}</a>
+                                @else
+                                    <p class="my-2 text-green-400">{{__('comics_index.stock')}}</p>
+                                    <h1 class="font-bold text-xl">{{number_format($comic->price,2)}} €</h1>
+                                    <a href="{{route('cart.add',$comic->id)}}" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-xs transition flex items-center justify-center gap-2 mt-4"><i class="fa-solid fa-cart-shopping"></i>{{__('comics_index.add_to_cart')}}</a>
+                                @endif
+                            @else
+                                <p class="my-2 text-red-500">{{__('comics_index.sold_out')}}</p>
+                                <h1 class="font-bold text-xl">{{number_format($comic->price,2)}} €</h1>
+                                <p class="cursor-not-allowed bg-gray-300 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-xs transition flex items-center justify-center gap-2 mt-4"><i class="fa-solid fa-cart-shopping"></i>{{__('comics_index.add_to_cart')}}</p>
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
+
+                {{-- Botón para ver más --}}
+                <div class="mt-10 text-center">
+                    <a href="{{ route('comics.index').'?characters%5B%5D='.$character->id }}"
+                       class="inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded shadow">
+                        Ver todos los cómics del personaje
+                    </a>
+                </div>
+            </div>
+        </section>
+    @endif
 </x-layouts.app2>

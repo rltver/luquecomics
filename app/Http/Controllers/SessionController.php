@@ -61,7 +61,7 @@ class SessionController extends Controller
             'description' => ['required','string','min:3','max:10000'],
             'price' => ['required','numeric','min:1'],
             'stock' => ['required','numeric','min:1'],
-            'thumbnail_image' => ['required', 'image', 'mimes:jpg,jpeg,png,gif', 'max:2048'],
+            'thumbnail_image' => ['required', 'image', 'mimes:jpg,jpeg,png,gif', 'max:4096'],
             'publisher_id' => ['required','numeric','exists:publishers,id'],
             'characters' => ['required','array'],
             'characters.*' => ['required','exists:characters,id'],
@@ -140,7 +140,7 @@ class SessionController extends Controller
     public function updateThumbnail(Request $request, Comic $comic)
     {
         $validated = $request->validate([
-            'thumbnail_image' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+            'thumbnail_image' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
         ]);
 
         if ($comic->thumbnail_image && Storage::disk('public')->exists('comics/'.$comic->thumbnail_image)) {

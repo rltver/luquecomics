@@ -103,7 +103,7 @@ Route::controller(CharactersController::class)->group(function () {
         Route::get('/edit-character/{character}', 'edit')->name('characters.edit');
         Route::post('/store-character', 'store')->name('characters.store');
         Route::put('/update-character/{character}', 'update')->name('characters.update');
-        Route::put('/update-character-thumbnail/{character}', 'updateThumbnail')->name('characters.updateThumbnail');
-        Route::delete('/delete-character/{character}', 'delete')->name('characters.delete');
+        Route::put('/update-character-thumbnail/{character}', 'updateImage')->name('characters.updateImage');
+        Route::delete('/delete-character/{character}', 'destroy')->name('characters.destroy');
     });
 });

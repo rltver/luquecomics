@@ -40,7 +40,7 @@
         </div>
 
         <!-- Barra de búsqueda (oculta en móviles) -->
-        <div class="hidden lg:block lg:w-1/3">
+        <div class="hidden lg:block lg:w-1/4 xl:w-1/3">
             <form class="flex" action="{{route('comics.index')}}">
                 <input name="search"
                        type="text"
@@ -59,15 +59,10 @@
         <nav class="hidden lg:flex items-center space-x-4">
             @include('components.langSwitch')
             <a href="{{route('comics.index')}}"  class="{{request()->routeIs('comics.index') ? 'text-yellow-400' : 'hover:text-yellow-400'}}  transition duration-300">{{ __('home.comics') }}</a>
-            <a href="#" class="hover:text-yellow-400 transition duration-300">Blog</a>
+            <a href="{{route('characters.index')}}"  class="{{request()->routeIs('characters.index') ? 'text-yellow-400' : 'hover:text-yellow-400'}}  transition duration-300">Personajes</a>
 
-            <!-- Icono de carrito -->
-{{--            <a href="#" class="relative hover:text-yellow-400 transition duration-300">--}}
-{{--                <i class="fa-solid fa-cart-shopping"></i>--}}
-{{--                <span class="absolute -top-2 -right-2 bg-yellow-500 text-xs text-gray-800 font-bold rounded-full h-5 w-5 flex items-center justify-center">--}}
-{{--                        {{count(session('cart',[]))}}--}}
-{{--                    </span>--}}
-{{--            </a>--}}
+
+            <!-- carrito -->
 
             @if(!request()->routeIs('cart.index') && !request()->routeIs('cart.confirmOrder'))
             @include('partials.cart')
@@ -154,9 +149,9 @@
 
             <!-- mobile menu -->
             <nav class="flex-1 overflow-y-auto p-4 space-y-4">
-                <a href="{{route('home')}}" class="block py-2 px-4 hover:bg-indigo-800 rounded transition duration-300">{{__('home.home')}}</a>
+                <a href="{{route('home')}}"  class="{{request()->routeIs('home') ? 'text-yellow-400 bg-indigo-800' : 'hover:text-yellow-400 hover:bg-indigo-800'}} block py-2 px-4 rounded transition duration-300">{{__('home.home')}}</a>
                 <a href="{{route('comics.index')}}"  class="{{request()->routeIs('comics.index') ? 'text-yellow-400 bg-indigo-800' : 'hover:text-yellow-400 hover:bg-indigo-800'}} block py-2 px-4 rounded transition duration-300">{{ __('home.comics') }}</a>
-                <a href="#" class="block py-2 px-4 hover:bg-indigo-800 rounded transition duration-300">Blog</a>
+                <a href="{{route('characters.index')}}"  class="{{request()->routeIs('characters.index') ? 'text-yellow-400 bg-indigo-800' : 'hover:text-yellow-400 hover:bg-indigo-800'}} block py-2 px-4 rounded transition duration-300">Personajes</a>
 
                 <div class="pt-4 border-t border-indigo-800">
                     @auth
