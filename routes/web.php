@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CharactersController;
 use App\Http\Controllers\ComicCommentController;
 use App\Http\Controllers\ComicController;
 use App\Http\Controllers\RegisterController;
@@ -47,14 +48,6 @@ Route::get('/language/{locale}', function ($locale) {
     return redirect()->back();
 })->name('language.switch');
 
-//Route::controller(SessionController::class)->group(function () {
-//    Route::get('/login', 'create')->name('session.create');
-//    Route::get('/my-orders', 'orders')->name('session.orders');
-//    Route::get('/account-info', 'accountInfo')->name('session.accountInfo');
-//    Route::post('/login', 'store')->name('session.store');
-//    Route::post('/logout', 'destroy')->name('session.destroy');
-//});
-
 Route::controller(SessionController::class)->group(function () {
     Route::middleware('guest')->group(function () {
         Route::get('/login', 'create')->name('login');
@@ -95,21 +88,22 @@ Route::controller(CartController::class)->group(function () {
 Route::controller(ComicController::class)->group(function () {
     Route::get('/comics', 'index')->name('comics.index');
     Route::get('/comics/{comic}', 'show')->name('comics.show');
-//    Route::get('/tasks', 'index')->name('tasks.index');
-//    Route::get('/tasks/deletedTasks', 'deletedTasks')->name('tasks.deletedTasks');
-//    Route::get('/tasks/create', 'create')->name('tasks.create');
-//    Route::get('/tasks/{task}', 'show')->name('tasks.show');
-//    Route::post('/tasks', 'store')->name('tasks.store');
-//    Route::get('/tasks/{task}/edit', 'edit')->name('tasks.edit');
-//    Route::patch('/tasks/{task}', 'update')->name('tasks.update');
-//    Route::delete('/tasks/{task}', 'destroy')->name('tasks.destroy');
-//    Route::post('/tasks/restore/{task}', 'restore')->name('tasks.restore');
-//    Route::delete('/tasks/forceDelete/{task}', 'forceDelete')->name('tasks.forceDelete');
-//    Route::post('/tasks/{task}/status', 'updateStatus')->name('tasks.updateStatus');
-
 });
 
 Route::controller(ComicCommentController::class)->middleware('auth')->group(function () {
     Route::post('/comics/{comic}/comments', 'store')->name('comments.store');
 });
 
+Route::controller(CharactersController::class)->group(function () {
+    Route::get('/characters', 'index')->name('characters.index');
+    Route::get('/characters/{character}', 'show')->name('characters.show');
+
+    Route::middleware(['auth','admin'])->group(function () {
+        Route::get('/add-character', 'create')->name('characters.create');
+        Route::get('/edit-character/{character}', 'edit')->name('characters.edit');
+        Route::post('/store-character', 'store')->name('characters.store');
+        Route::put('/update-character/{character}', 'update')->name('characters.update');
+        Route::put('/update-character-thumbnail/{character}', 'updateThumbnail')->name('characters.updateThumbnail');
+        Route::delete('/delete-character/{character}', 'delete')->name('characters.delete');
+    });
+});

@@ -118,7 +118,7 @@
     </form>
 
     <div>
-        <div class="max-w-md mx-auto p-6 bg-white rounded-sm shadow">
+        <div class="max-w-md mx-12 sm:mx-auto p-6 bg-white rounded-sm shadow">
             <h2 class="text-xl font-semibold mb-4">Actualizar portada del cómic</h2>
 
             @if ($comic->thumbnail_image)

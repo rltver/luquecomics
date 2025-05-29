@@ -84,7 +84,7 @@ class SessionController extends Controller
             'type' => $validated['type'],
             'pages' => $validated['pages'],
             'weight' => $validated['weight'],
-            'slug' => Str::slug($validated['title'])
+            'slug' => Str::slug($validated['title']).uniqid(),
         ]);
 
         $comic->characters()->sync($request->input('characters', []));
@@ -131,7 +131,7 @@ class SessionController extends Controller
             'type' => $validated['type'],
             'pages' => $validated['pages'],
             'weight' => $validated['weight'],
-            'slug' => Str::slug($validated['title'])
+            'slug' => Str::slug($validated['title']).uniqid(),
         ]);
         $comic->characters()->sync($request->input('characters', []));
         return redirect()->route('session.editComic', $comic->id)->with('success', 'Comic updated successfully');

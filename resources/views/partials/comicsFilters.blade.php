@@ -80,16 +80,16 @@
         <ul x-show="open" x-transition.duration.500ms class="mt-2 pl-4 transition-all">
             @foreach($characters as $character)
                 <li class="flex gap-2">
-                    <label class="flex items-center gap-2 cursor-pointer font-light">
+                    <label class="flex gap-2 cursor-pointer font-light">
                         <input
-                            class=""
+                            class="m-1"
                             type="checkbox"
                             name="characters[]"
                             id="character_{{$character->id}}"
                             value="{{$character->id}}"
                             {{ in_array((string)$character->id, request()->input('characters', [])) ? 'checked' : '' }}
                         >
-                        {{$character->name}}
+                        <span class="" title="{{$character->name}}">{{$character->name}}</span>
                     </label>
                 </li>
             @endforeach

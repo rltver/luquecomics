@@ -34,7 +34,7 @@
                 <button
                     type="button"
                     @click="open = true"
-                    class="block lg:hidden bg-blue-600 text-white px-4 py-2 rounded mb-4"
+                    class="block lg:hidden bg-blue-600 cursor-pointer text-white px-4 py-2 rounded mb-4"
                 >
                     <i class="fa-solid fa-filter"></i>
                 </button>
@@ -60,12 +60,12 @@
                 </form>
             </div>
 
-    <div class="p-4 sm:p-0 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+    <div class="p-4 sm:p-0 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
     @forelse($comics as $comic)
         <div
             href=""
             onclick="window.location.href='{{route('comics.show',$comic->id)}}'"
-            class="w-full cursor-pointer flex flex-col items-center sm:m-4 rounded-sm shadow-md p-4 m-auto sm:w-[300px] md:w-auto hover:shadow-xl transition-all duration-300"
+            class="w-full cursor-pointer bg-white  flex flex-col items-center rounded-sm shadow-md p-4 mx-auto hover:shadow-xl transition-all duration-300"
         >
             <img class="mb-2 h-96 md:h-72  2xl:h-96 w-full object-contain" src="{{asset('storage/comics/'. ($comic->thumbnail_image ?? 'default.webp'))}}" alt="{{$comic->thumbnail_image}}">
             <h2 class="line-clamp-2 h-15 font-semibold text-center text-xl capitalize" title="{{$comic->title}}">{{$comic->title}}</h2>

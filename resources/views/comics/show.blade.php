@@ -106,7 +106,7 @@
                     style="scroll-behavior: smooth;"
                 >
                     @foreach($comic->characters as $character)
-                        <a href="#" class="z-10 mx-2 flex-shrink-0 w-40 flex flex-col items-center cursor-pointer hover:shadow-xl transition-all duration-500">
+                        <a href="{{route('characters.show',$character->id)}}" class="z-10 mx-2 flex-shrink-0 w-40 flex flex-col items-center cursor-pointer hover:shadow-xl transition-all duration-500">
                             <img class="mb-2 h-64 w-full object-contain" src="{{asset('storage/characters/'. ($character->image ?? 'default.webp'))}}" alt="{{$character->name}}">
                             <p class="text-center">{{$character->name}}</p>
                         </a>

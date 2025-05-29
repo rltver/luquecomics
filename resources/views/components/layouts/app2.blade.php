@@ -34,8 +34,8 @@
 
             <!-- Logo -->
             <a href="{{route('home')}}" class="flex items-center space-x-2">
-                <i class="fa-solid fa-person-falling-burst fa-2xl"></i>
-                <h1 class="text-2xl font-bold">Luque<span class="text-yellow-400">Comics</span></h1>
+                <i class="fa-solid fa-person-falling-burst fa-xl"></i>
+                <h1 class="text-xl sm:text-2xl font-bold">Luque<span class="text-yellow-400">Comics</span></h1>
             </a>
         </div>
 
@@ -99,7 +99,7 @@
         </nav>
 
         <!-- Iconos móviles (carrito y búsqueda) -->
-        <div class="flex lg:hidden items-center space-x-4">
+        <div class="flex lg:hidden items-center space-x-4 ms-2">
             @include('components.langSwitch')
             <button class="text-white focus:outline-none cursor-pointer" onclick="searchbox.showModal()">
                 <i class="fa-solid fa-magnifying-glass"></i>

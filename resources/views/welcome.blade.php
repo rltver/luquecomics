@@ -38,7 +38,7 @@
                     <div
                         href=""
                         onclick="window.location.href='{{route('comics.show',$comic->id)}}'"
-                        class="w-full bg-white cursor-pointer flex flex-col items-center sm:m-4 rounded-sm shadow-md p-4 m-auto sm:w-[300px] md:w-auto hover:shadow-xl transition-all duration-300"
+                        class="w-full bg-white cursor-pointer flex flex-col items-center rounded-sm shadow-md p-4 m-auto hover:shadow-xl transition-all duration-300"
                     >
                         <img class="mb-2 h-96 md:h-72  2xl:h-96 w-full object-contain" src="{{asset('storage/comics/'. ($comic->thumbnail_image ?? 'default.webp'))}}" alt="{{$comic->thumbnail_image}}">
                         <h2 class="line-clamp-2 h-15 font-semibold text-center text-xl capitalize" title="{{$comic->title}}">{{$comic->title}}</h2>

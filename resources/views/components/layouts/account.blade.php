@@ -23,6 +23,13 @@
                     {{__('account_layout.add_comic')}}
                 </a>
                 <hr class="text-yellow-500">
+                <a
+                    href="{{route('characters.create')}}"
+                    class="{{request()->routeIs('characters.create') ? 'text-indigo-600' : 'hover:text-indigo-600'}} transition duration-300"
+                >
+                    Añadir personaje
+                </a>
+                <hr class="text-yellow-500">
             @endif
             <form method="post" action="{{route('session.destroy')}}" class="w-full">
                 @csrf

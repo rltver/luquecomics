@@ -5,7 +5,7 @@
             <div class="rounded-sm overflow-hidden my-4 shadow-lg">
                 <div class="bg-indigo-600 flex  justify-between py-2 px-3 text-white">
                     <p title="Fecha del pedido">{{date_format($order->created_at,'d/m/Y')}}</p>
-                    <div class="dropdown dropdown-end">
+                    <div class="dropdown dropdown-center">
                         <div tabindex="0" role="button" class="cursor-pointer hover:text-yellow-400 focus:text-yellow-400">{{__('orders.details')}} <i class="fa-solid fa-chevron-down fa-xs"></i></div>
                         <ul tabindex="0" class="dropdown-content rounded-sm text-white p-2 bg-indigo-600 shadow-xl rounded-box w-60 z-50 mt-2 border border-gray-100">
                             <li><b>{{__('orders.province')}}:</b> {{$order->province}}</li>

@@ -12,6 +12,11 @@ class Character extends Model
 {
     /** @use HasFactory<\Database\Factories\CharacterFactory> */
     use HasFactory;
+    protected $guarded = [];
+
+    protected $casts = [
+        'first_appearance' => 'date',
+    ];
 
     public function publisher(): BelongsTo {
         return $this->belongsTo(Publisher::class);
