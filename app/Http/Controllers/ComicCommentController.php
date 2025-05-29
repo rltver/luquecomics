@@ -34,6 +34,9 @@ class ComicCommentController extends Controller
             'comment' => 'required|string|max:500',
             'mark' => 'required|integer|min:1|max:5'
         ]);
+
+        $comic->ComicComments()->where('user_id', Auth::id())->delete();
+
         $comic->ComicComments()->create([
             'content'=>$request->comment,
             'user_id' => Auth::id(),

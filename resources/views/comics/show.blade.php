@@ -166,27 +166,29 @@
     <form class="my-2" method="POST" action="{{route('comments.store',$comic->id)}}" class="flex">
         @csrf
         <div class="rating rating-xl my-4">
-            <input type="radio" name="mark" value="1" class="mask mask-star-2 bg-yellow-400" aria-label="1 star" required />
-            <input type="radio" name="mark" value="2" class="mask mask-star-2 bg-yellow-400" aria-label="2 star" />
-            <input type="radio" name="mark" value="3" class="mask mask-star-2 bg-yellow-400" aria-label="3 star" />
-            <input type="radio" name="mark" value="4" class="mask mask-star-2 bg-yellow-400" aria-label="4 star" />
-            <input type="radio" name="mark" value="5" class="mask mask-star-2 bg-yellow-400" aria-label="5 star" />
+            <input type="radio" name="mark" value="1" class="mask mask-star-2 bg-yellow-400 text-yellow-400" aria-label="1 star" required />
+            <input type="radio" name="mark" value="2" class="mask mask-star-2 bg-yellow-400 text-yellow-400" aria-label="2 star" />
+            <input type="radio" name="mark" value="3" class="mask mask-star-2 bg-yellow-400 text-yellow-400" aria-label="3 star" />
+            <input type="radio" name="mark" value="4" class="mask mask-star-2 bg-yellow-400 text-yellow-400" aria-label="4 star" />
+            <input type="radio" name="mark" value="5" class="mask mask-star-2 bg-yellow-400 text-yellow-400" aria-label="5 star" />
         </div>
         <textarea name="comment" id="comment" class="w-full p-2 border rounded" cols="60" rows="3" placeholder="{{__('comics_show.comment_placeholder')}}" required></textarea>
         <button class="my-3 cursor-pointer px-4 py-2 bg-yellow-500 hover:bg-yellow-600 rounded text-white font-bold transition" type="submit">{{__('comics_show.send')}}</button>
     </form>
     @foreach($comic->ComicComments as $comment)
-        <div class="my-4">
-            <div class="flex items-center gap-2">
-                <h2 class="font-semibold">{{$comment->user->name}}</h2>
-                <span class="my-2 font-light">{{$comment->created_at->format('d/m/Y H:i:s')}}</span>
-            </div>
-            <div class="rating">
-                <div class="mask mask-star-2 bg-yellow-400" aria-label="1 star" {{$comment->mark == 1 ? "aria-current=true" : ''}}></div>
-                <div class="mask mask-star-2 bg-yellow-400" aria-label="2 star" {{$comment->mark == 2 ? "aria-current=true" : ''}}></div>
-                <div class="mask mask-star-2 bg-yellow-400" aria-label="3 star" {{$comment->mark == 3 ? "aria-current=true" : ''}}></div>
-                <div class="mask mask-star-2 bg-yellow-400" aria-label="4 star" {{$comment->mark == 4 ? "aria-current=true" : ''}}></div>
-                <div class="mask mask-star-2 bg-yellow-400" aria-label="5 star" {{$comment->mark == 5 ? "aria-current=true" : ''}}></div>
+        <div class="my-4 rounded-sm ring-1 ring-gray-400 p-2">
+            <div class="flex items-center justify-between gap-2 mb-2">
+                <div class="flex">
+                    <h2 class="font-semibold me-2">{{$comment->user->name}}</h2>
+                    <span class="font-light">{{$comment->created_at->format('d/m/Y H:i:s')}}</span>
+                </div>
+                <div class="rating ms-6">
+                    <div class="mask mask-star-2 bg-yellow-400" aria-label="1 star" {{$comment->mark == 1 ? "aria-current=true" : ''}}></div>
+                    <div class="mask mask-star-2 bg-yellow-400" aria-label="2 star" {{$comment->mark == 2 ? "aria-current=true" : ''}}></div>
+                    <div class="mask mask-star-2 bg-yellow-400" aria-label="3 star" {{$comment->mark == 3 ? "aria-current=true" : ''}}></div>
+                    <div class="mask mask-star-2 bg-yellow-400" aria-label="4 star" {{$comment->mark == 4 ? "aria-current=true" : ''}}></div>
+                    <div class="mask mask-star-2 bg-yellow-400" aria-label="5 star" {{$comment->mark == 5 ? "aria-current=true" : ''}}></div>
+                </div>
             </div>
             <p class="">{{$comment->content}}</p>
         </div>

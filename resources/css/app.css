@@ -8,6 +8,7 @@
 @plugin "daisyui" {
     themes: none
 }
+
 @plugin "flowbite/plugin";
 
 
@@ -19,7 +20,10 @@
     --color-terciary: #E9DFC3;
     --color-quaternary: #FFF8F8;
 }
+
+
 @tailwind utilities;
+
 
 
 .no-spinners {
@@ -43,3 +47,8 @@ details > summary::marker, /* Latest Chrome, Edge, Firefox */
 details > summary::-webkit-details-marker /* Safari */ {
     display: none;
 }
+
+input[name="mark"]:checked.mask-star-2 {
+    background-color: #facc15 !important; /* Tailwind yellow-400 or yellow-500 */
+}
+
