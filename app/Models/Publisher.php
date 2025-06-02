@@ -11,6 +11,12 @@ class Publisher extends Model
     /** @use HasFactory<\Database\Factories\PublisherFactory> */
     use HasFactory;
 
+    protected $guarded = [];
+
+    protected $casts = [
+        'creation_date' => 'date',
+    ];
+
     public function characters(){
         return $this->hasMany(Character::class);
     }

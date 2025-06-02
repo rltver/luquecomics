@@ -102,13 +102,13 @@
 
                 <!-- Contenedor scrolleable -->
                 <div
-                    class="flex scroll overflow-x-auto"
+                    class="flex scroll overflow-x-auto py-4"
                     style="scroll-behavior: smooth;"
                 >
                     @foreach($comic->characters as $character)
-                        <a href="{{route('characters.show',$character->id)}}" class="z-10 mx-2 flex-shrink-0 w-40 flex flex-col items-center cursor-pointer hover:shadow-xl transition-all duration-500">
+                        <a href="{{route('characters.show',$character->id)}}" class="bg-white rounded-xs overflow-hidden z-10 mx-2 flex-shrink-0 w-40 p-4 flex flex-col items-center cursor-pointer hover:shadow-xl transition-all duration-500">
                             <img class="mb-2 h-64 w-full object-contain" src="{{asset('storage/characters/'. ($character->image ?? 'default.webp'))}}" alt="{{$character->name}}">
-                            <p class="text-center">{{$character->name}}</p>
+                            <p class="text-center line-clamp-1" title="{{$character->name}}">{{$character->name}}</p>
                         </a>
                     @endforeach
                 </div>
@@ -125,7 +125,7 @@
         </div>
         <div>
             <h2 class="font-semibold text-xl mt-4 mb-1">{{__('comics_show.info')}}</h2>
-            <p><b>{{__('comics_show.publisher')}}:</b> {{$comic->publisher->name}}</p>
+            <p><b>{{__('comics_show.publisher')}}:</b> <a href="{{route('publishers.show',$comic->publisher->id)}}" class="text-indigo-600 hover:text-yellow-500 transition duration-300">{{$comic->publisher->name}}</a></p>
             <p><b>{{__('comics_show.author')}}:</b> {{$comic->author}}</p>
             <p><b>{{__('comics_show.artist')}}:</b> {{$comic->artist}}</p>
             <p><b>{{__('comics_show.type')}}:</b> {{$comic->type}}</p>

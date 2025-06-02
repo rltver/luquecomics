@@ -59,8 +59,16 @@
         <nav class="hidden lg:flex items-center space-x-4">
             @include('components.langSwitch')
             <a href="{{route('comics.index')}}"  class="{{request()->routeIs('comics.index') ? 'text-yellow-400' : 'hover:text-yellow-400'}}  transition duration-300">{{ __('home.comics') }}</a>
-            <a href="{{route('characters.index')}}"  class="{{request()->routeIs('characters.index') ? 'text-yellow-400' : 'hover:text-yellow-400'}}  transition duration-300">Personajes</a>
-
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="m-1 hover:text-yellow-400 focus:text-yellow-400 cursor-pointer transition-all duration-300 bg-indigo-800 py-1 px-2 rounded-sm">Explorar ️</div>
+                <ul tabindex="0" class="dropdown-content menu bg-indigo-800 shadow-xl rounded-box w-60 z-50 mt-2 rounded-sm">
+                    <li><a href="{{route('characters.index')}}" class="hover:bg-indigo-700 rounded-sm transition-all duration-300">Personajes</a></li>
+                    <li><hr class="mt-4"></li>
+                    @foreach($publishers as $publisher)
+                        <li><a href="{{route('publishers.show',$publisher->id)}}" class="hover:bg-indigo-700 rounded-sm transition-all duration-300">{{$publisher->name}}</a></li>
+                    @endforeach
+                </ul>
+            </div>
 
             <!-- carrito -->
 
@@ -152,7 +160,16 @@
                 <a href="{{route('home')}}"  class="{{request()->routeIs('home') ? 'text-yellow-400 bg-indigo-800' : 'hover:text-yellow-400 hover:bg-indigo-800'}} block py-2 px-4 rounded transition duration-300">{{__('home.home')}}</a>
                 <a href="{{route('comics.index')}}"  class="{{request()->routeIs('comics.index') ? 'text-yellow-400 bg-indigo-800' : 'hover:text-yellow-400 hover:bg-indigo-800'}} block py-2 px-4 rounded transition duration-300">{{ __('home.comics') }}</a>
                 <a href="{{route('characters.index')}}"  class="{{request()->routeIs('characters.index') ? 'text-yellow-400 bg-indigo-800' : 'hover:text-yellow-400 hover:bg-indigo-800'}} block py-2 px-4 rounded transition duration-300">Personajes</a>
-
+                @foreach($publishers as $publisher)
+                    <a
+                        href="{{ route('publishers.show', $publisher->id) }}"
+                        class="{{ request()->routeIs('publishers.show') && request()->route('publisher')?->id === $publisher->id
+                        ? 'text-yellow-400 bg-indigo-800'
+                        : 'hover:text-yellow-400 hover:bg-indigo-800' }}
+                        block py-2 px-4 rounded transition duration-300">
+                        {{ $publisher->name }}
+                    </a>
+                @endforeach
                 <div class="pt-4 border-t border-indigo-800">
                     @auth
                         @auth

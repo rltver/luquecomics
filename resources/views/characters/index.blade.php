@@ -71,7 +71,7 @@
                 @empty
                     <div class="min-w-96 font-semibold text-xl">
                         <h1 class="">{{__('comics_index.no_results')}}</h1>
-                        <a href="{{ route('comics.index') }}" class="text-indigo-600">{{__('comics_index.clean_filters')}}.</a>
+                        <a href="{{ route('characters.index') }}" class="text-indigo-600">{{__('comics_index.clean_filters')}}.</a>
 
                     </div>
 

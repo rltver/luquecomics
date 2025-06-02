@@ -30,6 +30,13 @@
                     Añadir un personaje
                 </a>
                 <hr class="text-yellow-500">
+                <a
+                    href="{{route('publishers.create')}}"
+                    class="{{request()->routeIs('publishers.create') ? 'text-indigo-600' : 'hover:text-indigo-600'}} transition duration-300"
+                >
+                    Añadir una editorial
+                </a>
+                <hr class="text-yellow-500">
             @endif
             <form method="post" action="{{route('session.destroy')}}" class="w-full">
                 @csrf

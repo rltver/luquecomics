@@ -4,9 +4,11 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CharactersController;
 use App\Http\Controllers\ComicCommentController;
 use App\Http\Controllers\ComicController;
+use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
 use App\Models\Comic;
+use App\Models\Publisher;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -105,5 +107,18 @@ Route::controller(CharactersController::class)->group(function () {
         Route::put('/update-character/{character}', 'update')->name('characters.update');
         Route::put('/update-character-thumbnail/{character}', 'updateImage')->name('characters.updateImage');
         Route::delete('/delete-character/{character}', 'destroy')->name('characters.destroy');
+    });
+});
+
+Route::controller(PublisherController::class)->group(function () {
+    Route::get('/publishers/{publisher}', 'show')->name('publishers.show');
+
+    Route::middleware(['auth','admin'])->group(function () {
+        Route::get('/add-publisher', 'create')->name('publishers.create');
+        Route::get('/edit-publisher/{publisher}', 'edit')->name('publishers.edit');
+        Route::post('/store-publisher', 'store')->name('publishers.store');
+        Route::put('/update-publisher/{publisher}', 'update')->name('publishers.update');
+        Route::put('/update-publisher-thumbnail/{publisher}', 'updateImage')->name('publishers.updateImage');
+        Route::delete('/delete-publisher/{publisher}', 'destroy')->name('publishers.destroy');
     });
 });
