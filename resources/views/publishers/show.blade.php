@@ -31,7 +31,7 @@
             @auth
                 @if(auth()->user()->is_admin)
                     <div class="flex gap-3 mt-6 justify-end items-end">
-                        <a href="{{route('characters.edit',$publisher->id)}}" class="w-8 h-8 leading-8 text-center rounded-sm bg-indigo-700 text-white cursor-pointer hover:text-yellow-500 transition duration-300">
+                        <a href="{{route('publishers.edit',$publisher->id)}}" class="w-8 h-8 leading-8 text-center rounded-sm bg-indigo-700 text-white cursor-pointer hover:text-yellow-500 transition duration-300">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>
                         <button class="w-8 h-8 leading-8 text-center rounded-sm bg-red-600 text-white cursor-pointer hover:text-yellow-500 transition duration-300" onclick="deletebox.showModal()">
@@ -40,8 +40,8 @@
                         <dialog id="deletebox" class="modal ">
                             <div class="modal-box bg-white rounded-sm">
                                 <h3 class="text-lg font-bold">¿Borrar editorial?</h3>
-                                <p class="py-4">Si borras esta editorial no podras recuperarla.</p>
-                                <form method="post" action="{{route('characters.destroy',$publisher->id)}}">
+                                <p class="py-4">Si borras esta editorial solo podras recuperarla en la base de datos.</p>
+                                <form method="post" action="{{route('publishers.destroy',$publisher->id)}}">
                                     @csrf
                                     <x-forms.button class="!bg-red-500 float-end">Borrar</x-forms.button>
                                     @method('delete')

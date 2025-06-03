@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('creation_date');
             $table->string('slug')->unique();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

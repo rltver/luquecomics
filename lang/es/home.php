@@ -37,6 +37,12 @@ return [
     'edit' => 'Ver y editar carrito',
     'payment' => 'Proceder al pago',
     'empty_cart' => 'Tu carrito esta vacío',
+    'welcome' => 'Bienvenido a ',
+    'best_sellers' => '¡Nuestros top ventas!',
+    'buy_them' => '¡Compralos antes de que se acaben!',
+    'see_all' => 'Ver todos los cómics'
+
+
 
 
 

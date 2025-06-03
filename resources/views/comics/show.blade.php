@@ -142,11 +142,11 @@
                     </button>
                     <dialog id="deletebox" class="modal ">
                         <div class="modal-box bg-white rounded-sm">
-                            <h3 class="text-lg font-bold">¿Borrar cómic?</h3>
-                            <p class="py-4">Si borras este comic solo podras recuperarlo desde la base de datos.</p>
+                            <h3 class="text-lg font-bold">{{__('comics_show.delete_ask')}}</h3>
+                            <p class="py-4">{{__('comics_show.delete_confirm')}}</p>
                             <form method="post" action="{{route('session.deleteComic',$comic->id)}}">
                                 @csrf
-                                <x-forms.button class="!bg-red-500 float-end">Borrar</x-forms.button>
+                                <x-forms.button class="!bg-red-500 float-end">{{__('comics_show.delete')}}</x-forms.button>
                                 @method('delete')
                             </form>
                         </div>

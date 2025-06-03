@@ -128,7 +128,7 @@ class CharactersController extends Controller
             'publisher_id' => $validatedData['publisher_id'],
             'first_appearance' => $validatedData['first_appearance'],
         ]);
-        return redirect()->route('characters.show', $character->id)->with('success', 'Character updated successfully');
+        return redirect()->route('characters.edit', $character->id)->with('success', 'Character updated successfully');
     }
 
     public function updateImage(Request $request, Character $character){

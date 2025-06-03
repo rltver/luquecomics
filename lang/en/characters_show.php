@@ -13,22 +13,18 @@ return [
     |
     */
 
-    'rating' => 'rating/s',
-    'add_to_cart' => 'Add to cart',
     'description' => 'Description',
-    'characters' => 'Some of the characters that appear',
-    'info' => 'Technical information',
+    'info' => 'Technical info',
     'publisher' => 'Publisher',
-    'author' => 'Author',
-    'artist' => 'Artist',
-    'type' => 'Type',
-    'pages' => 'Number of pages',
-    'comments' => 'Comments and ratings',
-    'comment_placeholder' => 'Type your comment here...',
-    'send' => 'Send',
-    'delete_ask' => 'Delete comic?',
+    'first' => 'First appearance',
+    'title' => 'The best-selling comics of the character',
+    'label' => 'Our best choice',
+    'no_comics' => 'This character has no comics currently available',
+    'see_all2' => 'Explore all comics',
+    'see_all' => 'Explore all comics of the character',
+    'delete_ask' => '¿Delete character?',
     'delete' => 'Delete',
-    'delete_confirm' => 'If you delete this comic, you will only be able to recover it in the database.',
+    'delete_confirm' => 'If you delete this character you will not be able to recover it.',
 
 
 ];

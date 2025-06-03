@@ -46,7 +46,7 @@
                        type="text"
                        placeholder="{{__('home.search_desktop')}}"
                        value="{{ request('search') ? request('search') : '' }}"
-                       class="w-full px-4 py-2 rounded-l border-none text-gray-300 focus:outline-none  transition duration-300">
+                       class="w-full px-4 py-2 rounded-l border-none text-black focus:outline-none  transition duration-300">
                 <button type="submit"
                         class="bg-yellow-500 hover:bg-yellow-600 cursor-pointer border-none text-gray-800 px-4 py-2 rounded-r transition duration-300">
                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -60,10 +60,10 @@
             @include('components.langSwitch')
             <a href="{{route('comics.index')}}"  class="{{request()->routeIs('comics.index') ? 'text-yellow-400' : 'hover:text-yellow-400'}}  transition duration-300">{{ __('home.comics') }}</a>
             <div class="dropdown dropdown-end">
-                <div tabindex="0" role="button" class="m-1 hover:text-yellow-400 focus:text-yellow-400 cursor-pointer transition-all duration-300 bg-indigo-800 py-1 px-2 rounded-sm">Explorar ️</div>
+                <div tabindex="0" role="button" class="m-1 hover:text-yellow-400 focus:text-yellow-400 cursor-pointer transition-all duration-300 bg-indigo-800 py-1 px-2 rounded-sm">{{__('home.explore')}} ️</div>
                 <ul tabindex="0" class="dropdown-content menu bg-indigo-800 shadow-xl rounded-box w-60 z-50 mt-2 rounded-sm">
-                    <li><a href="{{route('characters.index')}}" class="hover:bg-indigo-700 rounded-sm transition-all duration-300">Personajes</a></li>
-                    <li><hr class="mt-4"></li>
+                    <li><a href="{{route('characters.index')}}" class="hover:bg-indigo-700 rounded-sm transition-all duration-300">{{__('home.characters')}}</a></li>
+                    <li><hr class="mt-2"></li>
                     @foreach($publishers as $publisher)
                         <li><a href="{{route('publishers.show',$publisher->id)}}" class="hover:bg-indigo-700 rounded-sm transition-all duration-300">{{$publisher->name}}</a></li>
                     @endforeach
@@ -159,15 +159,33 @@
             <nav class="flex-1 overflow-y-auto p-4 space-y-4">
                 <a href="{{route('home')}}"  class="{{request()->routeIs('home') ? 'text-yellow-400 bg-indigo-800' : 'hover:text-yellow-400 hover:bg-indigo-800'}} block py-2 px-4 rounded transition duration-300">{{__('home.home')}}</a>
                 <a href="{{route('comics.index')}}"  class="{{request()->routeIs('comics.index') ? 'text-yellow-400 bg-indigo-800' : 'hover:text-yellow-400 hover:bg-indigo-800'}} block py-2 px-4 rounded transition duration-300">{{ __('home.comics') }}</a>
-                <a href="{{route('characters.index')}}"  class="{{request()->routeIs('characters.index') ? 'text-yellow-400 bg-indigo-800' : 'hover:text-yellow-400 hover:bg-indigo-800'}} block py-2 px-4 rounded transition duration-300">Personajes</a>
+                <a href="{{route('characters.index')}}"  class="{{request()->routeIs('characters.index') ? 'text-yellow-400 bg-indigo-800' : 'hover:text-yellow-400 hover:bg-indigo-800'}} block py-2 px-4 rounded transition duration-300">{{__('home.characters')}}</a>
+{{--                @foreach($publishers as $publisher)--}}
+{{--                    <a--}}
+{{--                        href="{{ route('publishers.show', $publisher->id) }}"--}}
+{{--                        class="{{ request()->routeIs('publishers.show') && request()->route('publisher')?->id === $publisher->id--}}
+{{--                        ? 'text-yellow-400 bg-indigo-800'--}}
+{{--                        : 'hover:text-yellow-400 hover:bg-indigo-800' }}--}}
+{{--                        block py-2 px-4 rounded transition duration-300">--}}
+{{--                        {{ $publisher->name }}--}}
+{{--                    </a>--}}
+{{--                @endforeach--}}
+
+
+
+                @php
+                    $currentPublisher = request()->routeIs('publishers.show') && request()->route('publisher') instanceof \App\Models\Publisher
+                        ? request()->route('publisher')
+                        : null;
+                @endphp
+
                 @foreach($publishers as $publisher)
-                    <a
-                        href="{{ route('publishers.show', $publisher->id) }}"
-                        class="{{ request()->routeIs('publishers.show') && request()->route('publisher')?->id === $publisher->id
-                        ? 'text-yellow-400 bg-indigo-800'
-                        : 'hover:text-yellow-400 hover:bg-indigo-800' }}
-                        block py-2 px-4 rounded transition duration-300">
-                        {{ $publisher->name }}
+                    <a href="{{ route('publishers.show', $publisher->id) }}"
+                       class="{{ $currentPublisher && $currentPublisher->id === $publisher->id
+                       ? 'text-yellow-400 bg-indigo-800'
+                       : 'hover:text-yellow-400 hover:bg-indigo-800' }}
+                       block py-2 px-4 rounded transition duration-300">
+                            {{ $publisher->name }}
                     </a>
                 @endforeach
                 <div class="pt-4 border-t border-indigo-800">

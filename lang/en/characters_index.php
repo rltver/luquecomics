@@ -13,13 +13,14 @@ return [
     |
     */
 
-    'password' => 'Contraseña',
-    'login' => 'Iniciar sesión',
-    'cancel' => 'Cancelar',
-    'go_to_register' => '¿No tienes una cuenta todavía? Registrate aquí!',
-    'name' => 'Nombre',
-    'surname' => 'Apellidos',
-    'confirm' => 'Confirmar contraseña',
-    'register' => 'Registrarse',
-
+    'century' => 'Decade of appearance',
+    'all' => 'All',
+    'publisher' => 'Publisher',
+    'filter' => 'Filter',
+    'clear_filters' => 'Clean Filters',
+    'order_by' => 'Order by',
+    'name' => 'Name',
+    'first' => 'First appearance',
+    'oldest' => 'Oldest',
+    'newest' => 'Newest',
 ];

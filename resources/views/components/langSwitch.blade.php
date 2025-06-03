@@ -5,14 +5,13 @@
             $flag = $locale === 'en' ? '🇬🇧' : '🇪🇸';
 
         @endphp
-        <span class="text-xl mr-2">
+        <span class="text-xl">
             @if($locale == 'en')
                 <img src="{{asset('storage/UK.png')}}" class="w-6" alt="">
             @else
                 <img src="{{asset('storage/spain.png')}}" class="w-6" alt="">
             @endif
         </span>
-        <i class="fa-solid fa-chevron-down fa-xs"></i>
     </div>
     <ul tabindex="0" class="dropdown-content  menu mt-2 w-32 bg-indigo-800 rounded-sm shadow-md">
         <li>

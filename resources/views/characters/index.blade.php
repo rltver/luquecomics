@@ -49,12 +49,12 @@
                             <input type="hidden" name="{{ $key }}" value="{{ $value }}">
                         @endif
                     @endforeach
-                    <label for="sort" class="hidden sm:block">{{__('comics_index.order_by')}}</label>
-                    <select name="order_by" id="sort" onchange="this.form.submit()" class="border-b px-2 py-1 rounded focus:border-b">
-                        <option value="name_asc" {{ request('order_by') == 'name_asc' ? 'selected' : '' }}>Nombre (A-Z)</option>
-                        <option value="name_desc" {{ request('order_by') == 'name_desc' ? 'selected' : '' }}>Nombre (Z-A)</option>
-                        <option value="appearance_asc" {{ request('order_by') == 'appearance_asc' ? 'selected' : '' }}>Primera aparición (Más antiguos)</option>
-                        <option value="appearance_desc" {{ request('order_by') == 'appearance_desc' ? 'selected' : '' }}>Primera aparición (Más recientes)</option>
+                    <label for="sort" class="hidden sm:block">{{__('characters_index.order_by')}}</label>
+                    <select name="order_by" id="sort" onchange="this.form.submit()" class="border-b px-2 py-1 pe-6 rounded focus:border-b">
+                        <option value="name_asc" {{ request('order_by') == 'name_asc' ? 'selected' : '' }}>{{__('characters_index.name')}} (A-Z)</option>
+                        <option value="name_desc" {{ request('order_by') == 'name_desc' ? 'selected' : '' }}>{{__('characters_index.name')}} (Z-A)</option>
+                        <option value="appearance_asc" {{ request('order_by') == 'appearance_asc' ? 'selected' : '' }}>{{__('characters_index.first')}} ({{__('characters_index.oldest')}})</option>
+                        <option value="appearance_desc" {{ request('order_by') == 'appearance_desc' ? 'selected' : '' }}>{{__('characters_index.first')}} ({{__('characters_index.newest')}})</option>
                     </select>
                 </form>
             </div>

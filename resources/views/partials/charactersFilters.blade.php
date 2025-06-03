@@ -3,9 +3,9 @@
     <h1 class="text-2xl mb-4 font-bold">Filtros</h1>
 
     <div class="mb-4">
-        <label class="text-lg font-normal flex flex-row items-center">Década de aparición</label>
+        <label class="text-lg font-normal flex flex-row items-center">{{__('characters_index.century')}}</label>
         <select name="decade" class="w-full border rounded p-1 px-2 mt-2">
-            <option value="">Todas</option>
+            <option value="">{{__('characters_index.all')}}</option>
             @foreach($decades as $decade)
                 <option value="{{ $decade }}" {{ request('decade') == $decade ? 'selected' : '' }}>
                     {{ $decade }}s
@@ -17,7 +17,7 @@
 
     <div x-data="{open:false}" class="mb-2">
         <h2 @click="open = !open" class="cursor-pointer text-lg font-normal flex flex-row items-center">
-            {{__('comics_index.publisher')}}
+            {{__('characters_index.publisher')}}
             @if(request('publishers'))
                 <div class="w-3 h-3 bg-red-500 rounded-full ml-4"></div>
             @endif
@@ -45,10 +45,10 @@
 
     <div class="mt-6 flex flex-col space-y-2">
         <button type="submit" class="w-full cursor-pointer bg-blue-600 hover:bg-blue-800 text-amber-100 font-medium py-2 px-4 rounded transition">
-            {{__('comics_index.filter')}}
+            {{__('characters_index.filter')}}
         </button>
         <a href="{{ route('characters.index') }}" class="w-full text-center bg-amber-400 hover:bg-amber-500 text-blue-900 font-medium py-2 px-4 rounded transition">
-            {{__('comics_index.clean_filters')}}
+            {{__('characters_index.clear_filters')}}
         </a>
     </div>
 </form>

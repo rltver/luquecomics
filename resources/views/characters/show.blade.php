@@ -19,14 +19,14 @@
             <div>
                 <h1 class="text-4xl capitalize font-bold mb-4">{{$character->name}}</h1>
                 <div>
-                    <h2 class="font-semibold text-xl mt-4 mb-1">{{__('comics_show.description')}}</h2>
+                    <h2 class="font-semibold text-xl mt-4 mb-1">{{__('characters_show.description')}}</h2>
                     <p>{{$character->description}}</p>
                     <hr class="my-2">
                 </div>
                 <div>
-                    <h2 class="font-semibold text-xl mt-4 mb-1">{{__('comics_show.info')}}</h2>
-                    <p><b>{{__('comics_show.publisher')}}:</b> {{$character->publisher->name}}</p>
-                    <p><b>Primera aparición:</b> {{$character->first_appearance->format('Y')}}</p>
+                    <h2 class="font-semibold text-xl mt-4 mb-1">{{__('characters_show.info')}}</h2>
+                    <p><b>{{__('characters_show.publisher')}}:</b> <a href="{{route('publishers.show',$character->publisher->id)}}" class="text-indigo-600 hover:text-yellow-500 transition duration-300">{{$character->publisher->name}}</a></p>
+                    <p><b>{{__('characters_show.first')}}:</b> {{$character->first_appearance->format('Y')}}</p>
                 </div>
             </div>
             @auth
@@ -40,11 +40,11 @@
                         </button>
                         <dialog id="deletebox" class="modal ">
                             <div class="modal-box bg-white rounded-sm">
-                                <h3 class="text-lg font-bold">¿Borrar personaje?</h3>
-                                <p class="py-4">Si borras este personaje no podras recuperarlo.</p>
+                                <h3 class="text-lg font-bold">{{__('characters_show.delete_ask')}}</h3>
+                                <p class="py-4">{{__('characters_show.delete_confirm')}}</p>
                                 <form method="post" action="{{route('characters.destroy',$character->id)}}">
                                     @csrf
-                                    <x-forms.button class="!bg-red-500 float-end">Borrar</x-forms.button>
+                                    <x-forms.button class="!bg-red-500 float-end">{{__('characters_show.delete')}}</x-forms.button>
                                     @method('delete')
                                 </form>
                             </div>
@@ -66,14 +66,14 @@
             <div class="max-w-7xl mx-auto px-4">
                 {{-- most bought comics --}}
                 <div class="text-center mb-12">
-                    <h1 class="text-4xl font-bold ">Este personaje no tiene cómics disponibles actualmente</h1>
+                    <h1 class="text-4xl font-bold ">{{__('characters_show.no_comics')}}</h1>
                 </div>
 
                 {{-- boton para ver más --}}
                 <div class="mt-10 text-center">
                     <a href="{{ route('comics.index') }}"
                        class="inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded shadow">
-                        Explorar todos los cómics
+                        {{__('characters_show.see_all2')}}
                     </a>
                 </div>
             </div>
@@ -83,8 +83,8 @@
             <div class="max-w-7xl mx-auto px-4">
                 {{-- most bought comics --}}
                 <div class="text-center mb-12">
-                    <h1 class="text-4xl font-bold ">Los cómics mas vendidos del personaje</h1>
-                    <p class="mt-2 text-gray-600">Nuestra mejor selección</p>
+                    <h1 class="text-4xl font-bold ">{{__('characters_show.title')}}</h1>
+                    <p class="mt-2 text-gray-600">{{__('characters_show.label')}}</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     @foreach($comics as $comic)
@@ -118,7 +118,7 @@
                 <div class="mt-10 text-center">
                     <a href="{{ route('comics.index').'?characters%5B%5D='.$character->id }}"
                        class="inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded shadow">
-                        Ver todos los cómics del personaje
+                        {{__('characters_show.see_all')}}
                     </a>
                 </div>
             </div>

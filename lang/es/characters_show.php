@@ -13,23 +13,18 @@ return [
     |
     */
 
-    'rating' => 'valoracion/es',
-    'add_to_cart' => 'Añadir al carrito',
     'description' => 'Descripción',
-    'characters' => 'Algunos de los personajes que aparecen',
     'info' => 'Datos técnicos',
     'publisher' => 'Editorial',
-    'author' => 'Autor',
-    'artist' => 'Artista',
-    'type' => 'Tipo',
-    'pages' => 'N.º de páginas',
-    'comments' => 'Comentarios y puntuaciones',
-    'comment_placeholder' => 'Escribe tu comentario...',
-    'send' => 'Enviar',
-    'delete_ask' => '¿Borrar cómic?',
+    'first' => 'Primera aparición',
+    'title' => 'Los cómics mas vendidos del personaje',
+    'label' => 'Nuestra mejor selección',
+    'no_comics' => 'Este personaje no tiene cómics disponibles actualmente',
+    'see_all2' => 'Ver todos los cómics',
+    'see_all' => 'Ver todos los cómics del personaje',
+    'delete_ask' => '¿Borrar personaje?',
     'delete' => 'Borrar',
-    'delete_confirm' => 'Si borras este cómic solo podras recuperarlo desde la base de datos.',
+    'delete_confirm' => 'Si borras este personaje no podras recuperarlo.',
 
 
 ];
-
