@@ -133,7 +133,7 @@
         @push('scripts')
             <script>
                 document.getElementById('file-upload').addEventListener('change', function(e) {
-                    const fileName = e.target.files[0]?.name || 'Ningún archivo seleccionado';
+                    const fileName = e.target.files[0]?.name || '{{__('add_comic.file')}}';
                     document.getElementById('file-name').textContent = fileName;
                 });
             </script>

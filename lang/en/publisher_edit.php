@@ -13,10 +13,15 @@ return [
     |
     */
 
-    'orders' => 'My orders',
-    'info' => 'Account information',
-    'add_comic' => 'Add a comic',
-    'logout' => 'Logout',
-    'add_character' => 'Add a character',
-    'add_publisher' => 'Add a publisher',
+    'name' => 'Name',
+    'description' => 'Description',
+    'file' => 'No file selected',
+    'first' => 'Creation date',
+    'update' => 'Update',
+    'thumbnail' => 'Update publisher image',
+    'current' => 'Current image',
+    'new' => 'New image',
+    'choose' => 'Choose',
+    'update_thumbnail' => 'Update image',
+    'go_back' => 'Go back',
 ];

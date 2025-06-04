@@ -13,10 +13,19 @@ return [
     |
     */
 
-    'orders' => 'My orders',
-    'info' => 'Account information',
-    'add_comic' => 'Add a comic',
-    'logout' => 'Logout',
-    'add_character' => 'Add a character',
-    'add_publisher' => 'Add a publisher',
+    'name' => 'Nombre',
+    'description' => 'Descripción',
+    'file' => 'Ningún archivo seleccionado',
+    'first' => 'Fecha de creación',
+    'update' => 'Actualizar',
+    'thumbnail' => 'Actualizar imagen de la editorial',
+    'current' => 'Imagen actual',
+    'new' => 'Nueva Imagen',
+    'choose' => 'Elegir',
+    'update_thumbnail' => 'Actualizar Imagen',
+    'go_back' => 'Volver',
+
+
+
+
 ];

@@ -27,14 +27,14 @@
                     href="{{route('characters.create')}}"
                     class="{{request()->routeIs('characters.create') ? 'text-indigo-600' : 'hover:text-indigo-600'}} transition duration-300"
                 >
-                    Añadir un personaje
+                    {{__('account_layout.add_character')}}
                 </a>
                 <hr class="text-yellow-500">
                 <a
                     href="{{route('publishers.create')}}"
                     class="{{request()->routeIs('publishers.create') ? 'text-indigo-600' : 'hover:text-indigo-600'}} transition duration-300"
                 >
-                    Añadir una editorial
+                    {{__('account_layout.add_publisher')}}
                 </a>
                 <hr class="text-yellow-500">
             @endif

@@ -19,13 +19,13 @@
             <div>
                 <h1 class="text-4xl capitalize font-bold mb-4">{{$publisher->name}}</h1>
                 <div>
-                    <h2 class="font-semibold text-xl mt-4 mb-1">{{__('comics_show.description')}}</h2>
+                    <h2 class="font-semibold text-xl mt-4 mb-1">{{__('publishers_show.description')}}</h2>
                     <p>{{$publisher->description}}</p>
                     <hr class="my-2">
                 </div>
                 <div>
-                    <h2 class="font-semibold text-xl mt-4 mb-1">{{__('comics_show.info')}}</h2>
-                    <p><b>Fecha de creación:</b> {{$publisher->creation_date->format('d/m/Y')}}</p>
+                    <h2 class="font-semibold text-xl mt-4 mb-1">{{__('publishers_show.info')}}</h2>
+                    <p><b>{{__('publishers_show.creation_date')}}:</b> {{$publisher->creation_date->format('d/m/Y')}}</p>
                 </div>
             </div>
             @auth
@@ -39,8 +39,8 @@
                         </button>
                         <dialog id="deletebox" class="modal ">
                             <div class="modal-box bg-white rounded-sm">
-                                <h3 class="text-lg font-bold">¿Borrar editorial?</h3>
-                                <p class="py-4">Si borras esta editorial solo podras recuperarla en la base de datos.</p>
+                                <h3 class="text-lg font-bold">{{__('publishers_show.delete_ask')}}</h3>
+                                <p class="py-4">{{__('publishers_show.delete_confirm')}}</p>
                                 <form method="post" action="{{route('publishers.destroy',$publisher->id)}}">
                                     @csrf
                                     <x-forms.button class="!bg-red-500 float-end">Borrar</x-forms.button>
@@ -65,14 +65,14 @@
             <div class="max-w-7xl mx-auto px-4">
                 {{-- most bought comics --}}
                 <div class="text-center mb-12">
-                    <h1 class="text-4xl font-bold ">Esta editorial no tiene cómics disponibles actualmente</h1>
+                    <h1 class="text-4xl font-bold ">{{__('publishers_show.no_comics')}}</h1>
                 </div>
 
                 {{-- boton para ver más --}}
                 <div class="mt-10 text-center">
                     <a href="{{ route('comics.index') }}"
                        class="inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded shadow">
-                        Explorar todos los cómics
+                        {{__('publishers_show.see_all2')}}
                     </a>
                 </div>
             </div>
@@ -82,8 +82,8 @@
             <div class="max-w-7xl mx-auto px-4">
                 {{-- most bought comics --}}
                 <div class="text-center mb-12">
-                    <h1 class="text-4xl font-bold ">Los cómics mas vendidos de la editorial</h1>
-                    <p class="mt-2 text-gray-600">Nuestra mejor selección</p>
+                    <h1 class="text-4xl font-bold ">{{__('publishers_show.title')}}</h1>
+                    <p class="mt-2 text-gray-600">{{__('publishers_show.label')}}</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     @foreach($comics as $comic)
@@ -117,7 +117,7 @@
                 <div class="mt-10 text-center">
                     <a href="{{ route('comics.index').'?publishers%5B%5D='.$publisher->id }}"
                        class="inline-block px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded shadow">
-                        Ver todos los cómics de la editorial
+                        {{__('publishers_show.see_all')}}
                     </a>
                 </div>
             </div>

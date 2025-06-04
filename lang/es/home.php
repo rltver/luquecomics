@@ -40,7 +40,9 @@ return [
     'welcome' => 'Bienvenido a ',
     'best_sellers' => '¡Nuestros top ventas!',
     'buy_them' => '¡Compralos antes de que se acaben!',
-    'see_all' => 'Ver todos los cómics'
+    'see_all' => 'Ver todos los cómics',
+    'explore' => 'Explorar',
+    'characters' => 'Personajes',
 
 
 

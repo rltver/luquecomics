@@ -13,10 +13,14 @@ return [
     |
     */
 
-    'orders' => 'My orders',
-    'info' => 'Account information',
-    'add_comic' => 'Add a comic',
-    'logout' => 'Logout',
-    'add_character' => 'Add a character',
-    'add_publisher' => 'Add a publisher',
+    'add_publisher' => 'Añadir una editorial',
+    'name' => 'Nombre',
+    'description' => 'Descripción',
+    'cover' => 'Imagen',
+    'first' => 'Fecha de creación',
+    'upload' => 'Subir',
+    'select' => 'Selecciona una opción',
+    'file' => 'Ningún archivo seleccionado',
+    'choose' => 'Elegir',
+
 ];

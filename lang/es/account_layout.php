@@ -17,5 +17,7 @@ return [
     'info' => 'Información de la cuenta',
     'add_comic' => 'Añadir un cómic',
     'logout' => 'Cerrar sesión',
+    'add_character' => 'Añadir un personaje',
+    'add_publisher' => 'Añadir una editorial',
 
 ];

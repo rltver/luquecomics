@@ -63,7 +63,7 @@
                 <div tabindex="0" role="button" class="m-1 hover:text-yellow-400 focus:text-yellow-400 cursor-pointer transition-all duration-300 bg-indigo-800 py-1 px-2 rounded-sm">{{__('home.explore')}} ️</div>
                 <ul tabindex="0" class="dropdown-content menu bg-indigo-800 shadow-xl rounded-box w-60 z-50 mt-2 rounded-sm">
                     <li><a href="{{route('characters.index')}}" class="hover:bg-indigo-700 rounded-sm transition-all duration-300">{{__('home.characters')}}</a></li>
-                    <li><hr class="mt-2"></li>
+                    <li><hr class="mt-[13px]"></li>
                     @foreach($publishers as $publisher)
                         <li><a href="{{route('publishers.show',$publisher->id)}}" class="hover:bg-indigo-700 rounded-sm transition-all duration-300">{{$publisher->name}}</a></li>
                     @endforeach
