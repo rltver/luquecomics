@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comic;
+use App\Models\OrderItem;
 use App\Models\Publisher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -46,7 +49,39 @@ class PublisherController extends Controller
      */
     public function show(Publisher $publisher)
     {
-        $comics = $publisher->comics()->where('stock', '>', 0)->orderBy('stock', 'asc')->take(8)->get(); // comics with less stock without beaing 0
+//        $comics = $publisher->comics()->where('stock', '>', 0)->orderBy('stock', 'asc')->take(8)->get(); // comics with less stock without beaing 0
+
+        $publisherId = $publisher->id;
+
+        $topComicIds = OrderItem::select('comic_id', DB::raw('SUM(quantity) as total_sold'))
+            ->whereHas('comic.publisher', function ($q) use ($publisherId) {
+                $q->where('publishers.id', $publisherId);
+            })
+            ->groupBy('comic_id')
+            ->orderByDesc('total_sold')
+            ->take(8)
+            ->pluck('comic_id');
+
+        $comics = Comic::whereIn('id', $topComicIds)
+            ->get()
+            ->sortBy(function ($comic) use ($topComicIds) {
+                return array_search($comic->id, $topComicIds->toArray());
+            });
+
+        if ($comics->count() < 8) {
+            $remaining = 8 - $comics->count();
+
+            $fillerComics = Comic::whereHas('publisher', function ($q) use ($publisherId) {
+                $q->where('publishers.id', $publisherId);
+            })
+                ->whereNotIn('id', $comics->pluck('id'))
+                ->latest()
+                ->take($remaining)
+                ->get();
+
+            $comics = $comics->concat($fillerComics);
+        }
+
 
         return view('publishers.show', compact('publisher', 'comics'));
     }

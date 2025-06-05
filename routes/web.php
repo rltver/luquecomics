@@ -8,14 +8,44 @@ use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
 use App\Models\Comic;
+use App\Models\OrderItem;
 use App\Models\Publisher;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    $comics = Comic::where('stock', '>', 0)->orderBy('stock', 'asc')->take(8)->get(); // comics with less stock without beaing 0
+//    $comics = Comic::where('stock', '>', 0)->orderBy('stock', 'asc')->take(8)->get(); // comics with less stock without beaing 0
+
+    //get the ids of the best sold comics
+    $topComicIds = OrderItem::select('comic_id', DB::raw('SUM(quantity) as total_sold'))
+        ->groupBy('comic_id')
+        ->orderByDesc('total_sold')
+        ->take(8)
+        ->pluck('comic_id');
+
+
+// get the comics with the ids
+    $comics = Comic::whereIn('id', $topComicIds)
+        ->get()
+        ->sortBy(function ($comic) use ($topComicIds) {
+        return array_search($comic->id, $topComicIds->toArray());
+    });;
+
+    //if there are not 8 different comics sold we need to fill it with other (latest)
+    if ($comics->count() < 8) {
+        $remaining = 8 - $comics->count();
+
+        $fillerComics = Comic::whereNotIn('id', $comics->pluck('id'))
+            ->latest()
+            ->take($remaining)
+            ->get();
+
+        $comics = $comics->concat($fillerComics);
+    }
+
     return view('welcome', compact('comics'));
 })->name('home');
 
