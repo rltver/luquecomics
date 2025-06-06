@@ -59,15 +59,15 @@ class SessionController extends Controller
             'author' => ['required','string','max:255','min:3'],
             'artist' => ['required','string','max:255','min:3'],
             'description' => ['required','string','min:3','max:10000'],
-            'price' => ['required','numeric','min:1'],
+            'price' => ['required','numeric','min:1','max:10000'],
             'stock' => ['required','numeric','min:1'],
-            'thumbnail_image' => ['required', 'image', 'mimes:jpg,jpeg,png,gif', 'max:4096'],
+            'thumbnail_image' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
             'publisher_id' => ['required','numeric','exists:publishers,id'],
             'characters' => ['required','array'],
             'characters.*' => ['required','exists:characters,id'],
             'type' => ['required', 'in:Trade paperback,Omnibus,Hard cover'],
-            'pages' => ['required','numeric','min:1'],
-            'weight' => ['required','numeric','min:1'],
+            'pages' => ['required','numeric','min:1','max:10000'],
+            'weight' => ['required','numeric','min:1','max:10000'],
         ]);
 
         $path = $request->file('thumbnail_image')->store('comics', 'public');

@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'rating' => 'valoracion/es',
+    'rating' => 'valoración/es',
     'add_to_cart' => 'Añadir al carrito',
     'description' => 'Descripción',
     'characters' => 'Algunos de los personajes que aparecen',
@@ -28,7 +28,9 @@ return [
     'send' => 'Enviar',
     'delete_ask' => '¿Borrar cómic?',
     'delete' => 'Borrar',
-    'delete_confirm' => 'Si borras este cómic solo podras recuperarlo desde la base de datos.',
+    'delete_confirm' => 'Si borras este cómic, solo podrás recuperarlo desde la base de datos.',
+    'caution' => '¡Atención!',
+    'comment_confirm' => 'Si ya cuentas con un comentario en este cómic se vera sustituido por el que estas a punto de enviar'
 
 
 ];

@@ -7,7 +7,7 @@
         @endphp
         <span class="text-xl">
             @if($locale == 'en')
-                <img src="{{asset('storage/UK.png')}}" class="w-6" alt="">
+                <img src="{{asset('storage/uk.png')}}" class="w-6" alt="">
             @else
                 <img src="{{asset('storage/spain.png')}}" class="w-6" alt="">
             @endif

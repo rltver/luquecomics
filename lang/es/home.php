@@ -39,7 +39,7 @@ return [
     'empty_cart' => 'Tu carrito esta vacío',
     'welcome' => 'Bienvenido a ',
     'best_sellers' => '¡Nuestros top ventas!',
-    'buy_them' => '¡Compralos antes de que se acaben!',
+    'buy_them' => '¡Cómpralos antes de que se acaben!',
     'see_all' => 'Ver todos los cómics',
     'explore' => 'Explorar',
     'characters' => 'Personajes',

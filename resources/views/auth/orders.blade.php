@@ -30,15 +30,15 @@
                                 @if($item->comic->trashed())
                                     <p class="capitalize text-lg font-semibold">
                                         {{$item->comic->title}}
-                                        <span class="text-red-500"> (not available anymore)</span>
+                                        <span class="text-red-500"> ({{__('orders.not_available')}})</span>
                                     </p>
                                 @else
                                     <a href="{{route('comics.show',$item->comic->id)}}" class="capitalize text-lg font-semibold hover:text-yellow-500 transition duration-300">{{$item->comic->title}}</a>
                                 @endif
                                 <div>
                                     <p>{{__('orders.units')}}: {{$item->quantity}}</p>
-                                    <p>{{__('orders.unit_price')}}: {{$item->unit_price}} €</p>
-                                    <p>{{__('orders.total_comic')}}: {{$item->unit_price * $item->quantity}} €</p>
+                                    <p>{{__('orders.unit_price')}}: {{number_format($item->unit_price, 2)}} €</p>
+                                    <p>{{__('orders.total_comic')}}: {{number_format($item->unit_price * $item->quantity)}} €</p>
                                 </div>
                             </div>
                         </div>

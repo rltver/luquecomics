@@ -24,7 +24,8 @@ return [
     'see_all' => 'Ver todos los cómics del personaje',
     'delete_ask' => '¿Borrar personaje?',
     'delete' => 'Borrar',
-    'delete_confirm' => 'Si borras este personaje no podras recuperarlo.',
+    'delete_confirm' => 'Si borras este personaje no podras recuperarlo y tambien se borraran en los comics donde aparece.',
+    'edit' => '¿Prefieres editarlo?',
 
 
 ];

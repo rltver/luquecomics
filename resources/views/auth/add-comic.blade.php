@@ -117,7 +117,7 @@
                         </div>
                     </div>
                     <div>
-                        <x-forms.label for="weight">{{__('add_comic.weight')}} (gr)</x-forms.label>
+                        <x-forms.label for="weight">{{__('add_comic.weight')}} (g)</x-forms.label>
                         <div class="">
                             <x-forms.input value="{{old('weight')}}" type="number" name="weight" id="weight"/>
                             <x-forms.error name="weight" />

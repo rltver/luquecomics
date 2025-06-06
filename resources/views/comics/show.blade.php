@@ -140,7 +140,7 @@
                     <button class="w-8 h-8 leading-8 text-center rounded-sm bg-red-600 text-white cursor-pointer hover:text-yellow-500 transition duration-300" onclick="deletebox.showModal()">
                         <i class="fa-solid fa-trash"></i>
                     </button>
-                    <dialog id="deletebox" class="modal ">
+                    <dialog id="deletebox" class="modal">
                         <div class="modal-box bg-white rounded-sm">
                             <h3 class="text-lg font-bold">{{__('comics_show.delete_ask')}}</h3>
                             <p class="py-4">{{__('comics_show.delete_confirm')}}</p>
@@ -166,14 +166,31 @@
     <form class="my-2" method="POST" action="{{route('comments.store',$comic->id)}}" class="flex">
         @csrf
         <div class="rating rating-xl my-4">
-            <input type="radio" name="mark" value="1" class="mask mask-star-2 bg-yellow-400 text-yellow-400" aria-label="1 star" required />
-            <input type="radio" name="mark" value="2" class="mask mask-star-2 bg-yellow-400 text-yellow-400" aria-label="2 star" />
-            <input type="radio" name="mark" value="3" class="mask mask-star-2 bg-yellow-400 text-yellow-400" aria-label="3 star" />
-            <input type="radio" name="mark" value="4" class="mask mask-star-2 bg-yellow-400 text-yellow-400" aria-label="4 star" />
-            <input type="radio" name="mark" value="5" class="mask mask-star-2 bg-yellow-400 text-yellow-400" aria-label="5 star" />
+            <input type="radio" name="mark" value="1" class="mask mask-star-2 bg-yellow-400 text-yellow-400" aria-label="1 star" {{old('mark') == 1 ? "checked" : ''}}/>
+            <input type="radio" name="mark" value="2" class="mask mask-star-2 bg-yellow-400 text-yellow-400" aria-label="2 star" {{old('mark') == 2 ? "checked" : ''}} />
+            <input type="radio" name="mark" value="3" class="mask mask-star-2 bg-yellow-400 text-yellow-400" aria-label="3 star" {{old('mark') == 3 ? "checked" : ''}} />
+            <input type="radio" name="mark" value="4" class="mask mask-star-2 bg-yellow-400 text-yellow-400" aria-label="4 star" {{old('mark') == 4 ? "checked" : ''}} />
+            <input type="radio" name="mark" value="5" class="mask mask-star-2 bg-yellow-400 text-yellow-400" aria-label="5 star" {{old('mark') == 5 ? "checked" : ''}} />
         </div>
-        <textarea name="comment" id="comment" class="w-full p-2 border rounded" cols="60" rows="3" placeholder="{{__('comics_show.comment_placeholder')}}" required></textarea>
-        <button class="my-3 cursor-pointer px-4 py-2 bg-yellow-500 hover:bg-yellow-600 rounded text-white font-bold transition" type="submit">{{__('comics_show.send')}}</button>
+        @error('mark')
+        <p class="text-sm text-red-500 mb-2">{{$message}}</p>
+        @enderror
+        <textarea name="comment" id="comment" class="w-full p-2 border rounded" cols="60" rows="3" placeholder="{{__('comics_show.comment_placeholder')}}">{{old('comment')}}</textarea>
+        @error('comment')
+        <p class="text-sm text-red-500">{{$message}}</p>
+        @enderror
+
+        <button type="button" class="my-3 cursor-pointer px-4 py-2 bg-yellow-500 hover:bg-yellow-600 rounded text-white font-bold transition" onclick="commentConfirm.showModal()">{{__('comics_show.send')}}</button>
+        <dialog id="commentConfirm" class="modal ">
+            <div class="modal-box bg-white rounded-sm">
+                <h3 class="text-lg font-bold">{{__('comics_show.caution')}}</h3>
+                <p class="py-4">{{__('comics_show.comment_confirm')}}</p>
+                <button class="my-3 cursor-pointer px-4 py-2 bg-yellow-500 hover:bg-yellow-600 rounded text-white font-bold transition" type="submit">{{__('comics_show.send')}}</button>
+            </div>
+            <form method="dialog" class="modal-backdrop">
+                <button>close</button>
+            </form>
+        </dialog>
     </form>
     @foreach($comic->ComicComments as $comment)
         <div class="my-4 rounded-sm ring-1 ring-gray-400 p-2">

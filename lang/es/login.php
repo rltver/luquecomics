@@ -16,7 +16,7 @@ return [
     'password' => 'Contraseña',
     'login' => 'Iniciar sesión',
     'cancel' => 'Cancelar',
-    'go_to_register' => '¿No tienes una cuenta todavía? Registrate aquí!',
+    'go_to_register' => '¿Todavía no tienes una cuenta? Regístrate aquí!',
     'name' => 'Nombre',
     'surname' => 'Apellidos',
     'confirm' => 'Confirmar contraseña',

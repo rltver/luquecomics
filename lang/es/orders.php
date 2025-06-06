@@ -25,6 +25,7 @@ return [
     'total_comic' => 'Precio total',
     'total' => 'Precio total del pedido',
     'empty' => 'No has realizado ningun pedido.',
-    'shop' => 'Empezar a comprar'
+    'shop' => 'Empezar a comprar',
+    'not_available' => 'No disponible en este momento',
 
 ];

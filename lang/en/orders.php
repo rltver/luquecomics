@@ -25,6 +25,7 @@ return [
     'total_comic' => 'Total price',
     'total' => 'Total price of the order',
     'empty' => 'You didn\'t make any orders.',
-    'shop' => 'Start shopping'
+    'shop' => 'Start shopping',
+    'not_available' => 'Not available anymore',
 
 ];

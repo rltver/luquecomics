@@ -24,7 +24,9 @@ return [
     'see_all' => 'Explore all comics of the character',
     'delete_ask' => '¿Delete character?',
     'delete' => 'Delete',
-    'delete_confirm' => 'If you delete this character you will not be able to recover it.',
+    'delete_confirm' => 'If you delete this character you will not be able to recover it and it will also be deleted in the comics where it appears',
+    'edit' => 'Prefer to edit it?',
+
 
 
 ];

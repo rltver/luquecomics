@@ -16,7 +16,7 @@ return [
     'password' => 'Password',
     'login' => 'Login',
     'cancel' => 'Cancel',
-    'go_to_register' => 'You dont have an account yet? Register here!',
+    'go_to_register' => 'Don\'t you have an account yet? Register here!',
     'name' => 'Name',
     'surname' => 'Surname',
     'confirm' => 'Confirm password',

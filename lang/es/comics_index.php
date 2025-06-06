@@ -15,7 +15,7 @@ return [
 
     'order_by' => 'Ordenar por',
     'news' => 'Novedades',
-    'title' => 'Titulo',
+    'title' => 'Título',
     'price_up' => 'Precio ascendente',
     'price_down' => 'Precio descendente',
     'availability' => 'Disponibilidad',

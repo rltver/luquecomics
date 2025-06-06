@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'add_comic' => 'Añadir un comic',
+    'add_comic' => 'Añadir un cómic',
     'title' => 'Título',
     'author' => 'Autor/es',
     'artist' => 'Artista/s',

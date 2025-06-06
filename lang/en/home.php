@@ -39,7 +39,7 @@ return [
     'empty_cart' => 'Your cart is empty.',
     'welcome' => 'Welcome to ',
     'best_sellers' => 'Best sellers!',
-    'buy_them' => 'Buy them before we ran out!',
+    'buy_them' => 'Buy them before we they sell out!',
     'see_all' => 'Explore all comics',
     'explore' => 'Explore',
     'characters' => 'Characters',

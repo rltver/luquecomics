@@ -42,6 +42,7 @@
                             <div class="modal-box bg-white rounded-sm">
                                 <h3 class="text-lg font-bold">{{__('characters_show.delete_ask')}}</h3>
                                 <p class="py-4">{{__('characters_show.delete_confirm')}}</p>
+                                <a class="text-indigo-600 hover:text-yellow-500 transitio duration-300" href="{{route('characters.edit',$character->id)}}">{{__('characters_show.edit')}}</a>
                                 <form method="post" action="{{route('characters.destroy',$character->id)}}">
                                     @csrf
                                     <x-forms.button class="!bg-red-500 float-end">{{__('characters_show.delete')}}</x-forms.button>
