@@ -261,10 +261,10 @@
 
             <!-- categories -->
             <div>
-                <h4 class="text-lg font-semibold mb-4">{{__('home.categories')}}</h4>
+                <h4 class="text-lg font-semibold mb-4">{{__('home.about')}}</h4>
                 <ul class="space-y-2">
-                    <li><a href="#" class="hover:text-yellow-400 transition duration-300">DC</a></li>
-                    <li><a href="#" class="hover:text-yellow-400 transition duration-300">Marvel</a></li>
+                    <li><a href="https://github.com/rltver" class="hover:text-yellow-400 transition duration-300">Rafael Luque Trujillo</a></li>
+                    <li><a href="https://www.iestrassierra.com" class="hover:text-yellow-400 transition duration-300">IES Trassierra</a></li>
                 </ul>
             </div>
 

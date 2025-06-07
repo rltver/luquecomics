@@ -41,7 +41,7 @@ class PublisherController extends Controller
             'slug' => Str::slug($validatedData['name']).uniqid(),
         ]);
 
-        return redirect()->route('publishers.create')->with('success', 'Publisher added successfully');
+        return redirect()->route('publishers.create')->with('success', __('notifications.publisher_added'));
     }
 
     /**
@@ -110,7 +110,7 @@ class PublisherController extends Controller
             'creation_date' => $validatedData['creation_date'],
         ]);
 
-        return redirect()->route('publishers.edit', $publisher->id)->with('success', 'Publisher updated successfully');
+        return redirect()->route('publishers.edit', $publisher->id)->with('success', __('notifications.publisher_updated'));
 
     }
 
@@ -131,7 +131,7 @@ class PublisherController extends Controller
             'logo' => $filename,
         ]);
 
-        return redirect()->back()->with('success', 'Imagen de la editorial actualizada correctamente.');
+        return redirect()->back()->with('success', __('notifications.publisher_image_updated'));
     }
 
     /**
@@ -140,6 +140,6 @@ class PublisherController extends Controller
     public function destroy(Publisher $publisher)
     {
         $publisher->delete();
-        return redirect()->route('home')->with('success', 'Publisher deleted successfully');
+        return redirect()->route('home')->with('success', __('notifications.publisher_deleted'));
     }
 }

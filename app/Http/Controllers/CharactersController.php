@@ -90,7 +90,7 @@ class CharactersController extends Controller
             'slug' => Str::slug($validatedData['name']).uniqid(),
         ]);
 
-        return redirect()->route('characters.create')->with('success', 'Character added successfully');
+        return redirect()->route('characters.create')->with('success', __('notifications.character_added'));
     }
 
     /**
@@ -163,7 +163,7 @@ class CharactersController extends Controller
             'publisher_id' => $validatedData['publisher_id'],
             'first_appearance' => $validatedData['first_appearance'],
         ]);
-        return redirect()->route('characters.edit', $character->id)->with('success', 'Character updated successfully');
+        return redirect()->route('characters.edit', $character->id)->with('success', __('notifications.character_updated'));
     }
 
     public function updateImage(Request $request, Character $character){
@@ -183,7 +183,7 @@ class CharactersController extends Controller
             'image' => $filename,
         ]);
 
-        return redirect()->back()->with('success', 'Imagen del personaje actualizada correctamente.');
+        return redirect()->back()->with('success', __('notifications.character_image_updated'));
     }
 
     /**
@@ -196,6 +196,6 @@ class CharactersController extends Controller
             Storage::disk('public')->delete('characters/'.$character->image);
         }
         $character->delete();
-        return redirect()->route('characters.index')->with('success', 'Character deleted successfully');
+        return redirect()->route('characters.index')->with('success', __('notifications.character_deleted'));
     }
 }

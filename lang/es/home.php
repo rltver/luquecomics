@@ -28,7 +28,7 @@ return [
     'quick_links' => 'Enlaces rápidos',
     'footer_comics' => 'Todos los cómics',
     'about_us' => 'Sobre nosotros',
-    'categories' => 'Categorías',
+    'about' => 'Acerca de',
     'superheroes' => 'Superhéroes',
     'contact' => 'Contacto',
     'copyright' => '. Todos los derechos reservados.',

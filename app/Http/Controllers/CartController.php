@@ -37,7 +37,7 @@ class CartController extends Controller
 
             $request->session()->put('cart', $cart);
 
-            return redirect()->back()->with('success',"Producto añadido a tu carrito");
+            return redirect()->back()->with('success',__('notifications.added_to_cart'));
 //        }
     }
 
@@ -86,7 +86,7 @@ class CartController extends Controller
         $cart = session('cart', []); // Obtiene el carrito o un array vacío
 
         if (empty($cart)) {
-            return redirect('/')->with('success', 'El carrito está vacío.');
+            return redirect('/')->with('success', __('notifications.empty_cart'));
         }
         $request->validate([
             'name' => 'required',

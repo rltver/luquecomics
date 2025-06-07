@@ -43,7 +43,7 @@ class ComicCommentController extends Controller
             'mark' => $request->mark
         ]);
 
-        return redirect()->back()->with('success', 'comment added successfully.');
+        return redirect()->back()->with('success', __('notifications.comment'));
     }
 
     /**

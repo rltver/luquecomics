@@ -26,6 +26,6 @@ class RegisterController extends Controller
         $user->sendEmailVerificationNotification();
 
         //redirect
-        return redirect(route('verification.notice'))->with('success', '¡Correo de verificación enviado!');
+        return redirect(route('verification.notice'))->with('success', __('notifications.verification'));
     }
 }

@@ -89,13 +89,13 @@ class SessionController extends Controller
 
         $comic->characters()->sync($request->input('characters', []));
 
-        return redirect()->route('session.addComic')->with('success', 'Comic added successfully');
+        return redirect()->route('session.addComic')->with('success', __('notifications.comic_added'));
     }
 
     public function deleteComic(Comic $comic){
         $comic->characters()->detach();
         $comic->delete();
-        return redirect()->route('comics.index')->with('success', 'Comic deleted successfully');
+        return redirect()->route('comics.index')->with('success', __('notifications.comic_deleted'));
     }
 
     public function editComic(Comic $comic){
@@ -134,7 +134,7 @@ class SessionController extends Controller
             'slug' => Str::slug($validated['title']).uniqid(),
         ]);
         $comic->characters()->sync($request->input('characters', []));
-        return redirect()->route('session.editComic', $comic->id)->with('success', 'Comic updated successfully');
+        return redirect()->route('session.editComic', $comic->id)->with('success', __('notifications.comic_updated'));
     }
 
     public function updateThumbnail(Request $request, Comic $comic)
@@ -155,6 +155,6 @@ class SessionController extends Controller
             'thumbnail_image' => $filename,
         ]);
 
-        return redirect()->back()->with('success', 'Portada actualizada correctamente.');
+        return redirect()->back()->with('success', __('notifications.comic_thumbnail_updated'));
     }
 }
