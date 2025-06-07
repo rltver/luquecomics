@@ -1,7 +1,6 @@
 <x-layouts.app2>
     <div class="text-center my-20">
-        <h1 class="text-7xl font-bold text-yellow-500 mb-4">404</h1>
-        <h2 class="text-2xl font-semibold mb-2">Not Found</h2>
+        <h1 class="text-7xl font-bold text-yellow-500 mb-4">503</h1>
         <h2 class="text-2xl font-semibold mb-2">Página no encontrada</h2>
         <p class="mb-6">La página que buscas no existe o ha sido movida.</p>
         <a href="{{ route('home') }}"
