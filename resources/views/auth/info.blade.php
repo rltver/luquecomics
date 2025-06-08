@@ -27,9 +27,13 @@
                 <div>
                     @if(!auth()->user()->hasVerifiedEmail())
                         <p class="text-center text-red-500 font-semibold">{{__('account_info.verify_notice')}}</p>
-                        <form method="post" action="{{route('verification.send')}}">
+                        <form method="post" id="verificationForm" action="{{route('verification.send')}}">
                             @csrf
-                            <x-forms.button class="mt-2 !bg-indigo-500 w-full">{{__('account_info.send_email')}}</x-forms.button>
+{{--                            <x-forms.button class="mt-2 !bg-indigo-500 w-full">{{__('account_info.send_email')}}</x-forms.button>--}}
+                            <x-forms.button id="submitBtn" class="mt-2 w-full">
+                                <span id="btnText">{{__('account_info.send_email')}}</span>
+                                <img src="{{asset('storage/spinner.webp')}}" width="30px" alt="..." id="btnLoading" class="hidden"/>
+                            </x-forms.button>
                         </form>
                     @endif
                 </div>
@@ -50,5 +54,16 @@
 {{--                <x-forms.button class="mt-2">Actualizar datos</x-forms.button>--}}
             </div>
         </div>
+
+        @push('scripts')
+            <script>
+                document.getElementById('verificationForm').addEventListener('submit', function () {
+                    const btn = document.getElementById('submitBtn');
+                    btn.disabled = true;
+                    document.getElementById('btnText').classList.toggle('hidden');
+                    document.getElementById('btnLoading').classList.toggle('hidden');
+                });
+            </script>
+        @endpush
     </x-slot:slot>
 </x-layouts.account>

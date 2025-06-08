@@ -58,13 +58,13 @@ Route::get('/email/verify', function () {
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill(); // marca el email como verificado
-    return redirect('/')->with('success',__('notification.verified')); // o a donde quieras redirigir
+    return redirect('/')->with('success',__('notifications.verified')); // o a donde quieras redirigir
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::post('/email/verification-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();
-    return back()->with('success', __('notification.verification'));
-})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+    return back()->with('success', __('notifications.verification'));
+})->middleware(['auth', 'throttle:30,1'])->name('verification.send');
 
 Route::controller(RegisterController::class)->middleware('guest')->group(function () {
     Route::get('/register', 'create')->name('register.create');

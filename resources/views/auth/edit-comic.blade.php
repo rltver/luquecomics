@@ -1,6 +1,6 @@
 <x-layouts.app2>
 
-    <form method="post" action="{{route('session.updateComic',$comic->id)}}">
+    <form method="post" id="editForm" action="{{route('session.updateComic',$comic->id)}}">
         @csrf
         @method('put')
 
@@ -113,7 +113,11 @@
 
 
             </div>
-            <x-forms.button class="mt-6 w-3/4 min-w-70 lg:w-full">{{__('comic_edit.update')}}</x-forms.button>
+{{--            <x-forms.button class="mt-6 w-3/4 min-w-70 lg:w-full">{{__('comic_edit.update')}}</x-forms.button>--}}
+            <x-forms.button id="submitBtn" class="mt-6 w-3/4 min-w-70 lg:w-full">
+                <span id="btnText">{{__('comic_edit.update')}}</span>
+                <img src="{{asset('storage/spinner.webp')}}" width="30px" alt="..." id="btnLoading" class="hidden"/>
+            </x-forms.button>
         </div>
     </form>
 
@@ -128,7 +132,7 @@
                 </div>
             @endif
 
-            <form action="{{route('session.updateThumbnail',$comic->id)}}" method="POST" enctype="multipart/form-data" class="space-y-4">
+            <form action="{{route('session.updateThumbnail',$comic->id)}}" id="edit2Form" method="POST" enctype="multipart/form-data" class="space-y-4">
                 @csrf
                 @method('PUT')
 
@@ -152,7 +156,11 @@
 
                 </div>
 
-                <x-forms.button type="submit" class="w-full">{{__('comic_edit.update_thumbnail')}}</x-forms.button>
+{{--                <x-forms.button type="submit" class="w-full">{{__('comic_edit.update_thumbnail')}}</x-forms.button>--}}
+                <x-forms.button id="submitBtn2" class="w-full">
+                    <span id="btnText2">{{__('comic_edit.update_thumbnail')}}</span>
+                    <img src="{{asset('storage/spinner.webp')}}" width="30px" alt="..." id="btnLoading2" class="hidden"/>
+                </x-forms.button>
             </form>
         </div>
     </div>
@@ -168,6 +176,22 @@
             document.getElementById('file-upload').addEventListener('change', function(e) {
                 const fileName = e.target.files[0]?.name || '{{__('comic_edit.file')}}';
                 document.getElementById('file-name').textContent = fileName;
+            });
+        </script>
+        <script>
+            document.getElementById('editForm').addEventListener('submit', function () {
+                const btn = document.getElementById('submitBtn');
+                btn.disabled = true;
+                document.getElementById('btnText').classList.toggle('hidden');
+                document.getElementById('btnLoading').classList.toggle('hidden');
+            });
+        </script>
+        <script>
+            document.getElementById('edit2Form').addEventListener('submit', function () {
+                const btn = document.getElementById('submitBtn2');
+                btn.disabled = true;
+                document.getElementById('btnText2').classList.toggle('hidden');
+                document.getElementById('btnLoading2').classList.toggle('hidden');
             });
         </script>
     @endpush

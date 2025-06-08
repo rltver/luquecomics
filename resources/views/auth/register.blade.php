@@ -1,5 +1,5 @@
 <x-layouts.app2>
-    <form method="POST" action="{{route('register.store')}}">
+    <form method="POST" id="registerForm" action="{{route('register.store')}}">
         @csrf
         <div class="flex flex-col items-center my-20">
             <div class="flex flex-col gap-2 w-1/2 min-w-50 lg:w-80">
@@ -38,13 +38,25 @@
                             <x-forms.error name="password_confirmation" />
                         </div>
                     </div>
-                <x-forms.button class="mt-2">{{__('login.register')}}</x-forms.button>
+                <x-forms.button id="submitBtn" class="mt-2">
+                    <span id="btnText">{{__('login.register')}}</span>
+                    <img src="{{asset('storage/spinner.webp')}}" width="30px" alt="..." id="btnLoading" class="hidden"/>
+                </x-forms.button>
                 <a href="/" class="py-2 bg-indigo-600 hover:bg-indigo-800 rounded-xs font-semibold text-center text-white">{{__('login.cancel')}}</a>
             </div>
         </div>
     </form>
 
 
-
+    @push('scripts')
+        <script>
+            document.getElementById('registerForm').addEventListener('submit', function () {
+                const btn = document.getElementById('submitBtn');
+                btn.disabled = true;
+                document.getElementById('btnText').classList.toggle('hidden');
+                document.getElementById('btnLoading').classList.toggle('hidden');
+            });
+        </script>
+    @endpush
 
 </x-layouts.app2>

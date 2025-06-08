@@ -1,7 +1,7 @@
 <x-layouts.account>
     <x-slot:header>{{__('add_comic.add_comic')}}</x-slot:header>
     <x-slot:slot>
-        <form method="POST" action="{{route('session.storeComic')}}" enctype="multipart/form-data">
+        <form method="POST" id="addForm" action="{{route('session.storeComic')}}" enctype="multipart/form-data">
         @csrf
 
             <div class="flex flex-col my-10 items-center lg:items-start max-w-[1200px]">
@@ -126,7 +126,11 @@
 
 
                 </div>
-                <x-forms.button class="mt-6 w-3/4 min-w-70 lg:w-full">{{__('add_comic.upload')}}</x-forms.button>
+{{--                <x-forms.button class="mt-6 w-3/4 min-w-70 lg:w-full">{{__('add_comic.upload')}}</x-forms.button>--}}
+                <x-forms.button id="submitBtn" class="mt-6 w-3/4 min-w-70 lg:w-full">
+                    <span id="btnText">{{__('add_comic.upload')}}</span>
+                    <img src="{{asset('storage/spinner.webp')}}" width="30px" alt="..." id="btnLoading" class="hidden"/>
+                </x-forms.button>
             </div>
         </form>
 
@@ -135,6 +139,14 @@
                 document.getElementById('file-upload').addEventListener('change', function(e) {
                     const fileName = e.target.files[0]?.name || '{{__('add_comic.file')}}';
                     document.getElementById('file-name').textContent = fileName;
+                });
+            </script>
+            <script>
+                document.getElementById('addForm').addEventListener('submit', function () {
+                    const btn = document.getElementById('submitBtn');
+                    btn.disabled = true;
+                    document.getElementById('btnText').classList.toggle('hidden');
+                    document.getElementById('btnLoading').classList.toggle('hidden');
                 });
             </script>
         @endpush

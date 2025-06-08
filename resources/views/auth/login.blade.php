@@ -21,7 +21,7 @@
             </div>
             <x-forms.button id="submitBtn" class="mt-2">
                 <span id="btnText">{{__('login.login')}}</span>
-                <span id="btnLoading" class="hidden">...</span>
+                <img src="{{asset('storage/spinner.webp')}}" width="30px" alt="..." id="btnLoading" class="hidden"/>
             </x-forms.button>
             <a href="{{url()->previous()}}" class="py-2 bg-indigo-600 hover:bg-indigo-800 rounded-xs font-semibold text-center text-white transition-all duration-300">{{__('login.cancel')}}</a>
                 <a class="text-center m-auto mt-3 cursor-pointer hover:underline text-indigo-600 transition-all duration-300 w-fit" href="{{route('register.create')}}">{{__('login.go_to_register')}}</a>
