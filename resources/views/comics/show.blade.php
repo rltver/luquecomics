@@ -89,40 +89,42 @@
             <p>{{$comic->description}}</p>
             <hr class="my-2">
         </div>
-        <div>
-            <h2 class="font-semibold text-xl mt-4 mb-2">{{__('comics_show.characters')}}</h2>
-            <div x-data="{ scrollX: 0 }" class="relative">
-                <!-- Botón Izquierdo -->
-{{--                <button--}}
-{{--                    @click="scrollX -= 300; $refs.scroller.scrollTo({ left: scrollX, behavior: 'smooth' })"--}}
-{{--                    class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow p-2 rounded-full"--}}
-{{--                >--}}
-{{--                    <i class="fas fa-chevron-left"></i>--}}
-{{--                </button>--}}
+        @if(count($comic->characters)>0)
+            <div>
+                <h2 class="font-semibold text-xl mt-4 mb-2">{{__('comics_show.characters')}}</h2>
+                <div x-data="{ scrollX: 0 }" class="relative">
+                    <!-- Botón Izquierdo -->
+                    {{--                <button--}}
+                    {{--                    @click="scrollX -= 300; $refs.scroller.scrollTo({ left: scrollX, behavior: 'smooth' })"--}}
+                    {{--                    class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow p-2 rounded-full"--}}
+                    {{--                >--}}
+                    {{--                    <i class="fas fa-chevron-left"></i>--}}
+                    {{--                </button>--}}
 
-                <!-- Contenedor scrolleable -->
-                <div
-                    class="flex scroll overflow-x-auto py-4"
-                    style="scroll-behavior: smooth;"
-                >
-                    @foreach($comic->characters as $character)
-                        <a href="{{route('characters.show',$character->id)}}" class="bg-white rounded-xs overflow-hidden z-10 mx-2 flex-shrink-0 w-40 p-4 flex flex-col items-center cursor-pointer hover:shadow-xl transition-all duration-500">
-                            <img class="mb-2 h-64 w-full object-contain" src="{{asset('storage/characters/'. ($character->image ?? 'default.webp'))}}" alt="{{$character->name}}">
-                            <p class="text-center line-clamp-1" title="{{$character->name}}">{{$character->name}}</p>
-                        </a>
-                    @endforeach
+                    <!-- Contenedor scrolleable -->
+                    <div
+                        class="flex scroll overflow-x-auto py-4"
+                        style="scroll-behavior: smooth;"
+                    >
+                        @foreach($comic->characters as $character)
+                            <a href="{{route('characters.show',$character->id)}}" class="bg-white rounded-xs overflow-hidden z-10 mx-2 flex-shrink-0 w-40 p-4 flex flex-col items-center cursor-pointer hover:shadow-xl transition-all duration-500">
+                                <img class="mb-2 h-64 w-full object-contain" src="{{asset('storage/characters/'. ($character->image ?? 'default.webp'))}}" alt="{{$character->name}}">
+                                <p class="text-center line-clamp-1" title="{{$character->name}}">{{$character->name}}</p>
+                            </a>
+                        @endforeach
+                    </div>
+
+                    <!-- Botón Derecho -->
+                    {{--                <button--}}
+                    {{--                    @click="scrollX += 300; $refs.scroller.scrollTo({ left: scrollX, behavior: 'smooth' })"--}}
+                    {{--                    class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow p-2 rounded-full"--}}
+                    {{--                >--}}
+                    {{--                    <i class="fas fa-chevron-right"></i>--}}
+                    {{--                </button>--}}
                 </div>
-
-                <!-- Botón Derecho -->
-{{--                <button--}}
-{{--                    @click="scrollX += 300; $refs.scroller.scrollTo({ left: scrollX, behavior: 'smooth' })"--}}
-{{--                    class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow p-2 rounded-full"--}}
-{{--                >--}}
-{{--                    <i class="fas fa-chevron-right"></i>--}}
-{{--                </button>--}}
+                <hr class="my-2">
             </div>
-            <hr class="my-2">
-        </div>
+        @endif
         <div>
             <h2 class="font-semibold text-xl mt-4 mb-1">{{__('comics_show.info')}}</h2>
             <p><b>{{__('comics_show.publisher')}}:</b> <a href="{{route('publishers.show',$comic->publisher->id)}}" class="text-indigo-600 hover:text-yellow-500 transition duration-300">{{$comic->publisher->name}}</a></p>
