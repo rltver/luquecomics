@@ -252,10 +252,10 @@
 
             <!-- quick links -->
             <div>
-                <h4 class="text-lg font-semibold mb-4">{{__('home.quick_links')}}</h4>
+                <h4 class="text-lg font-semibold mb-4">{{__('home.help')}}</h4>
                 <ul class="space-y-2">
-                    <li><a href="{{route('home')}}" class="hover:text-yellow-400 transition duration-300">{{__('home.home')}}</a></li>
-                    <li><a href="{{route('comics.index')}}" class="hover:text-yellow-400 transition duration-300">{{__('home.footer_comics')}}</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=F6ZmpEje8Bc" class="hover:text-yellow-400 transition duration-300">{{__('home.video')}}</a></li>
+                    <li><a href="" class="hover:text-yellow-400 transition duration-300">{{__('home.presentation')}}</a></li>
                 </ul>
             </div>
 
