@@ -14,7 +14,7 @@ return [
     */
 
     'verification' => '¡Correo de verificación enviado!',
-    'verified' => '¡Tu cuenta ha sido verificado!',
+    'verified' => '¡Tu cuenta ha sido verificada!',
     'comment' => 'Comentario añadido correctamente',
     'comic_added' => 'Cómic añadido correctamente',
     'comic_deleted' => 'Cómic eliminado correctamente',
@@ -28,7 +28,7 @@ return [
     'character_deleted' => 'Personaje eliminado correctamente',
     'character_updated' => 'Personaje actualizado correctamente',
     'character_image_updated' => 'Imagen de personaje actualizada correctamente',
-    'added_to_cart' => 'Producto añadido a tu carrito',
+    'added_to_cart' => 'Cómic añadido a tu carrito',
     'empty_cart' => 'El carrito está vacio',
 
 
