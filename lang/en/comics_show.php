@@ -30,7 +30,7 @@ return [
     'delete' => 'Delete',
     'delete_confirm' => 'If you delete this comic, you will only be able to recover it in the database.',
     'caution' => 'Caution!',
-    'comment_confirm' => 'If you already have a comment in this comic '
+    'comment_confirm' => 'If you already have a comment on this comic, it will be replaced by the one you are about to submit.'
 
 
 ];

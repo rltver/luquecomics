@@ -26,7 +26,7 @@ return [
     'description' => 'La mejor selección de cómics en línea.',
     'shipments' => 'Envíos a todo el país.',
     'help' => 'Ayuda',
-    'video' => 'Video',
+    'video' => 'Vídeo',
     'presentation' => 'Presentación',
     'footer_comics' => 'Todos los cómics',
     'about_us' => 'Sobre nosotros',

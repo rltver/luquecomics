@@ -24,7 +24,7 @@ return [
     'unit_price' => 'Precio por unidad',
     'total_comic' => 'Precio total',
     'total' => 'Precio total del pedido',
-    'empty' => 'No has realizado ningun pedido.',
+    'empty' => 'No has realizado ningún pedido.',
     'shop' => 'Empezar a comprar',
     'not_available' => 'No disponible en este momento',
 
