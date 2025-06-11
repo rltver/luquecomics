@@ -23,6 +23,7 @@ return [
     'publisher' => 'Editorial',
     'characters' => 'Personajes',
     'filter' => 'Filtrar',
+    'filters' => 'Filtros',
     'clean_filters' => 'Limpiar filtros',
     'add_to_cart' => 'Añadir al carrito',
     'last_units' => '¡Últimas unidades!',

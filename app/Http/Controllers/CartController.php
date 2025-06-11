@@ -22,7 +22,13 @@ class CartController extends Controller
             $cart = session('cart',[]);
 
             if (isset($cart[$comic->id])){
-                $cart[$comic->id]['quantity'] = $cart[$comic->id]['quantity']+ $quantity;
+                if ($cart[$comic->id]['quantity'] != $comic->stock){
+                    if ($cart[$comic->id]['quantity']+ $quantity <= $comic->stock){
+                        $cart[$comic->id]['quantity'] = $cart[$comic->id]['quantity']+ $quantity;
+                    } else{
+                        $cart[$comic->id]['quantity'] = $comic->stock;
+                    }
+                }
             }else {
                 $cart[$comic->id] = [
                     'id' => $comic->id,
@@ -160,7 +166,11 @@ class CartController extends Controller
             $order->save();
             foreach ($order->items as $item){
                 $comic = Comic::find($item->comic_id);
-                $comic->stock -= $item->quantity;
+                if ($comic->stock - $item->quantity < 0){
+                    $comic->stock = 0;
+                } else{
+                    $comic->stock -= $item->quantity;
+                }
                 $comic->save();
             }
 

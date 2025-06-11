@@ -23,6 +23,7 @@ return [
     'publisher' => 'Publisher',
     'characters' => 'Characters',
     'filter' => 'Filter',
+    'filters' => 'Filters',
     'clean_filters' => 'Clean filters',
     'add_to_cart' => 'Add to cart',
     'last_units' => 'Last units!',

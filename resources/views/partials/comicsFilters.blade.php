@@ -1,6 +1,6 @@
 <form action="{{route('comics.index',request()->all())}}" class="min-w-48">
     @csrf
-    <h1 class="text-2xl mb-4 font-bold">Filtros</h1>
+    <h1 class="text-2xl mb-4 font-bold">{{__('comics_index.filters')}}</h1>
 
     <div x-data="{open:false}" class="mb-2">
         <h2 @click="open = !open" class="cursor-pointer text-lg flex flex-row items-center font-normal">

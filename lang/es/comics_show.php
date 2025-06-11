@@ -30,7 +30,7 @@ return [
     'delete' => 'Borrar',
     'delete_confirm' => 'Si borras este cómic, solo podrás recuperarlo desde la base de datos.',
     'caution' => '¡Atención!',
-    'comment_confirm' => 'Si ya cuentas con un comentario en este cómic, se verá sustituido por el que estas a punto de enviar'
+    'comment_confirm' => 'Si ya cuentas con un comentario en este cómic, se verá sustituido por el que estás a punto de enviar'
 
 
 ];

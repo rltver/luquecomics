@@ -14,7 +14,7 @@ return [
     */
 
     'password' => 'Password',
-    'login' => 'Login',
+    'login' => 'Log In',
     'cancel' => 'Cancel',
     'go_to_register' => 'Don\'t you have an account yet? Register here!',
     'name' => 'Name',

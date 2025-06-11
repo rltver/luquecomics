@@ -14,7 +14,7 @@ return [
     */
 
     'verification' => 'Verification email sent!',
-    'verified' => '¡Your account has been verified!',
+    'verified' => 'Your account has been verified!',
     'comment' => 'Comment successfully added',
     'comic_added' => 'Comic successfully added',
     'comic_deleted' => 'Comic deleted successfully',

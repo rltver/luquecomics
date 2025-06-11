@@ -182,16 +182,27 @@
         <p class="text-sm text-red-500">{{$message}}</p>
         @enderror
 
-        <button type="button" class="my-3 cursor-pointer px-4 py-2 bg-yellow-500 hover:bg-yellow-600 rounded text-white font-bold transition" onclick="commentConfirm.showModal()">{{__('comics_show.send')}}</button>
-        <dialog id="commentConfirm" class="modal ">
+{{--        <button  class="my-3 cursor-pointer px-4 py-2 bg-yellow-500 hover:bg-yellow-600 rounded text-white font-bold transition" type="button" onclick="comentario.showModal()">{{__('comics_show.send')}}</button>--}}
+{{--        <dialog id="comentario" class="modal">--}}
+{{--            <div class="modal-box bg-white rounded-sm">--}}
+{{--                <h3 class="text-lg font-bold">{{__('comics_show.caution')}}</h3>--}}
+{{--                <p class="py-4">{{__('comics_show.comment_confirm')}}</p>--}}
+{{--                <button class="my-3 cursor-pointer px-4 py-2 bg-yellow-500 hover:bg-yellow-600 rounded text-white font-bold transition" type="submit">{{__('comics_show.send')}}</button>--}}
+{{--            </div>--}}
+{{--            <form method="dialog" class="modal-backdrop">--}}
+{{--                <button>close</button>--}}
+{{--            </form>--}}
+{{--        </dialog>--}}
+        <button class="my-3 cursor-pointer px-4 py-2 bg-yellow-500 hover:bg-yellow-600 rounded text-white font-bold transition " type="button" onclick="my_modal_2.showModal()">{{__('comics_show.send')}}</button>
+        <dialog id="my_modal_2" class="modal">
             <div class="modal-box bg-white rounded-sm">
                 <h3 class="text-lg font-bold">{{__('comics_show.caution')}}</h3>
                 <p class="py-4">{{__('comics_show.comment_confirm')}}</p>
                 <button class="my-3 cursor-pointer px-4 py-2 bg-yellow-500 hover:bg-yellow-600 rounded text-white font-bold transition" type="submit">{{__('comics_show.send')}}</button>
             </div>
-            <form method="dialog" class="modal-backdrop">
-                <button>close</button>
-            </form>
+            <div class="modal-backdrop" onclick="my_modal_2.close()">
+                <button class="hidden">close</button>
+            </div>
         </dialog>
     </form>
     @foreach($comic->ComicComments as $comment)
