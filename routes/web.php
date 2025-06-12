@@ -29,6 +29,7 @@ Route::get('/', function () {
 
 // get the comics with the ids
     $comics = Comic::whereIn('id', $topComicIds)
+        ->where('stock','>',0)
         ->get()
         ->sortBy(function ($comic) use ($topComicIds) {
         return array_search($comic->id, $topComicIds->toArray());
@@ -39,6 +40,7 @@ Route::get('/', function () {
         $remaining = 8 - $comics->count();
 
         $fillerComics = Comic::whereNotIn('id', $comics->pluck('id'))
+            ->where('stock','>',0)
             ->latest()
             ->take($remaining)
             ->get();

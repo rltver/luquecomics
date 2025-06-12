@@ -63,6 +63,7 @@ class PublisherController extends Controller
             ->pluck('comic_id');
 
         $comics = Comic::whereIn('id', $topComicIds)
+            ->where('stock','>',0)
             ->get()
             ->sortBy(function ($comic) use ($topComicIds) {
                 return array_search($comic->id, $topComicIds->toArray());
@@ -75,6 +76,7 @@ class PublisherController extends Controller
                 $q->where('publishers.id', $publisherId);
             })
                 ->whereNotIn('id', $comics->pluck('id'))
+                ->where('stock','>',0)
                 ->latest()
                 ->take($remaining)
                 ->get();
