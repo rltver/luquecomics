@@ -100,25 +100,25 @@
 
     @push('scripts')
         <script>
-            document.getElementById('file-upload').addEventListener('change', function(e) {
+            document.querySelector('#file-upload').addEventListener('change', function(e) {
                 const fileName = e.target.files[0]?.name || '{{__('character_edit.file')}}';
-                document.getElementById('file-name').textContent = fileName;
+                document.querySelector('#file-name').textContent = fileName;
             });
         </script>
         <script>
-            document.getElementById('editForm').addEventListener('submit', function () {
-                const btn = document.getElementById('submitBtn');
+            document.querySelector('#editForm').addEventListener('submit', function () {
+                const btn = document.querySelector('#submitBtn');
                 btn.disabled = true;
-                document.getElementById('btnText').classList.toggle('hidden');
-                document.getElementById('btnLoading').classList.toggle('hidden');
+                document.querySelector('#btnText').classList.toggle('hidden');
+                document.querySelector('#btnLoading').classList.toggle('hidden');
             });
         </script>
         <script>
-            document.getElementById('edit2Form').addEventListener('submit', function () {
-                const btn = document.getElementById('submitBtn2');
+            document.querySelector('#edit2Form').addEventListener('submit', function () {
+                const btn = document.querySelector('#submitBtn2');
                 btn.disabled = true;
-                document.getElementById('btnText2').classList.toggle('hidden');
-                document.getElementById('btnLoading2').classList.toggle('hidden');
+                document.querySelector('#btnText2').classList.toggle('hidden');
+                document.querySelector('#btnLoading2').classList.toggle('hidden');
             });
         </script>
     @endpush

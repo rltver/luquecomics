@@ -50,11 +50,11 @@
 
     @push('scripts')
         <script>
-            document.getElementById('registerForm').addEventListener('submit', function () {
-                const btn = document.getElementById('submitBtn');
+            document.querySelector('#registerForm').addEventListener('submit', function () {
+                const btn = document.querySelector('#submitBtn');
                 btn.disabled = true;
-                document.getElementById('btnText').classList.toggle('hidden');
-                document.getElementById('btnLoading').classList.toggle('hidden');
+                document.querySelector('#btnText').classList.toggle('hidden');
+                document.querySelector('#btnLoading').classList.toggle('hidden');
             });
         </script>
     @endpush

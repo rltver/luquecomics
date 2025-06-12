@@ -57,12 +57,14 @@
 
         @push('scripts')
             <script>
-                document.getElementById('verificationForm').addEventListener('submit', function () {
-                    const btn = document.getElementById('submitBtn');
-                    btn.disabled = true;
-                    document.getElementById('btnText').classList.toggle('hidden');
-                    document.getElementById('btnLoading').classList.toggle('hidden');
-                });
+                if(document.querySelector('#verificationForm') != null){
+                    document.querySelector('#verificationForm').addEventListener('submit', function () {
+                        const btn = document.querySelector('#submitBtn');
+                        btn.disabled = true;
+                        document.querySelector('#btnText').classList.toggle('hidden');
+                        document.querySelector('#btnLoading').classList.toggle('hidden');
+                    });
+                }
             </script>
         @endpush
     </x-slot:slot>

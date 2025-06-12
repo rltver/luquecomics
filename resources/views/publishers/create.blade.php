@@ -60,17 +60,17 @@
 
         @push('scripts')
             <script>
-                document.getElementById('file-upload').addEventListener('change', function(e) {
+                document.querySelector('#file-upload').addEventListener('change', function(e) {
                     const fileName = e.target.files[0]?.name || '{{__('publisher_add.file')}}';
-                    document.getElementById('file-name').textContent = fileName;
+                    document.querySelector('#file-name').textContent = fileName;
                 });
             </script>
             <script>
-                document.getElementById('addForm').addEventListener('submit', function () {
-                    const btn = document.getElementById('submitBtn');
+                document.querySelector('#addForm').addEventListener('submit', function () {
+                    const btn = document.querySelector('#submitBtn');
                     btn.disabled = true;
-                    document.getElementById('btnText').classList.toggle('hidden');
-                    document.getElementById('btnLoading').classList.toggle('hidden');
+                    document.querySelector('#btnText').classList.toggle('hidden');
+                    document.querySelector('#btnLoading').classList.toggle('hidden');
                 });
             </script>
         @endpush
