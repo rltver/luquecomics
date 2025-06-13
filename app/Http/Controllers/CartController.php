@@ -95,12 +95,12 @@ class CartController extends Controller
             return redirect('/')->with('success', __('notifications.empty_cart'));
         }
         $request->validate([
-            'name' => 'required',
-            'surname' => 'required',
-            'address' => 'required',
-            'province' => 'required',
-            'city' => 'required',
-            'zipcode' => 'required|integer',
+            'name' => ['required', 'string', 'max:255'],
+            'surname' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
+            'province' => ['required', 'string', 'max:255'],
+            'city' => ['required', 'string', 'max:255'],
+            'zipcode' => ['required', 'numeric', 'min:1','max:99999'],
             'phone' => 'required|integer|digits:9',
         ]);
 
