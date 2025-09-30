@@ -41,7 +41,7 @@ A Laravel-based comic book store where users can browse, purchase, and rate comi
 3. **Set up environment**
    ```bash
    cp .env.example .env
-
+   ´´´
    Update .env with your database, mail, and Stripe credentials.
 
 4. **Generate app key**
